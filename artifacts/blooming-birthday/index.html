@@ -1988,7 +1988,7 @@ function initUnboxing() {
     // Crack animation
     gsap.timeline()
       .to(sealEl, { scale: 1.15, duration: 0.1 })
-      .to(sealEl, { scale: 0, opacity: 0, duration: 0.4, ease: 'back.in(2)' })
+       .to(sealEl, { scale: 0, opacity: 0, duration: 0.4, ease: 'back.in(2)' })
       // Lid lifts
       .to(lid, { rotateX: -110, y: '-30px', opacity: 0, duration: 0.9, ease: 'power2.out',
         transformOrigin: 'top center' }, '-=0.2')
@@ -2076,34 +2076,7 @@ const AudioSystem = (() => {
       if (playBtn) playBtn.textContent = '▶';
     });
 
-    document.getElementById('music-play').addEventListener('click', togglePlay);
-    document.getElementById('music-vol-down').addEventListener('click', () => setVolume(bgVolume - 0.1));
-    document.getElementById('music-vol-up').addEventListener('click', () => setVolume(bgVolume + 0.1));
-    document.getElementById('music-bar').addEventListener('click', seek);
-  }
-
-  function updateBar() {
-    if (!bgMusic.duration) return;
-    const pct = (bgMusic.currentTime / bgMusic.duration) * 100;
-    barFill.style.width = pct + '%';
-    const c = Math.floor(bgMusic.currentTime);
-    timeCurrent.textContent = `${Math.floor(c/60)}:${String(c%60).padStart(2,'0')}`;
-    if (playBtn) playBtn.textContent = bgMusic.paused ? '▶' : '⏸';
-  }
-
-  function togglePlay() {
-    if (bgMusic.paused) {
-      bgMusic.play().catch(()=>{});
-      if (playBtn) playBtn.textContent = '⏸';
-    } else {
-      bgMusic.pause();
-      if (playBtn) playBtn.textContent = '▶';
-    }
-  }
-
-  function setVolume(v) {
-    bgVolume = Math.max(0, Math.min(1, v));
-    bgMusic.volume = bgVolume;
+    document.getElementById('music-play').addEventListener('click', togglePla.     bgMusic.volume = bgVolume;
   }
 
   function seek(e) {
