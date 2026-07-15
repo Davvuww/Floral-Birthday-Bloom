@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Selamat Lulus, Annisa 🌸</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Dancing+Script:wght@400;600;700&family=Caveat:wght@400;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== CSS VARIABLES ===== */
+:root{
+  --cream:#FFFDD0;
+  --dusty-rose:#DCAE96;
+  --deep-navy:#2C3E50;
+  --blush:#f7e0e8;
+  --soft-pink:#f0c8d8;
+  --lavender:#d4c8f0;
+  --sky:#c8d8f8;
+  --ease-premium:cubic-bezier(0.4,0,0.2,1);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{width:100%;height:100%;overflow:hidden;font-family:'Poppins',sans-serif;background:#1a1020;}
+
+/* ===== V4: PRELOADER ===== */
+#v4-preloader{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--cream);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+  transition:opacity 0.8s var(--ease-premium);
+  will-change:opacity;
+}
+#v4-preloader.hide{opacity:0;pointer-events:none;}
+.v4-pre-emoji{font-size:44px;animation:preFloat 1.8s ease-in-out infinite;}
+@keyframes preFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.v4-pre-text{
+  font-family:'Dancing Script',cursive;font-size:17px;
+  color:var(--deep-navy);text-align:center;
+  padding:0 32px;line-height:1.6;opacity:0.8;
+}
+.v4-pre-dots{display:flex;gap:8px;margin-top:4px;}
+.v4-pre-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--dusty-rose);
+  animation:dotBounce 1.2s ease-in-out infinite;
+}
+.v4-pre-dot:nth-child(2){animation-delay:0.2s;}
+.v4-pre-dot:nth-child(3){animation-delay:0.4s;}
+@keyframes dotBounce{0%,100%{transform:translateY(0);opacity:0.4;}50%{transform:translateY(-6px);opacity:1;}}
+
+/* ===== V4: PROGRESS BAR ===== */
+#v4-progress-bar{
+  position:fixed;top:0;left:0;height:3px;width:0%;
+  background:linear-gradient(90deg,var(--dusty-rose),var(--deep-navy));
+  z-index:9998;border-radius:0 2px 2px 0;
+  transition:width 0.1s linear;
+  will-change:width;
+}
+
+/* ===== SCENE 1: ENVELOPE ===== */
+#scene1{
+  position:fixed;inset:0;
+  background:radial-gradient(ellipse at center,#fff8f0 0%,#f4efe6 60%,#ecd8c0 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  z-index:100;transition:opacity 0.9s var(--ease-premium);will-change:opacity;
+}
+#scene1.fade-out{opacity:0;pointer-events:none;}
+.wc-blob{position:absolute;border-radius:50%;filter:blur(40px);pointer-events:none;opacity:0.13;}
+.wc1{width:200px;height:200px;background:#e8927a;top:8%;left:3%;}
+.wc2{width:240px;height:240px;background:#a8c4e8;bottom:10%;right:5%;}
+.wc3{width:160px;height:160px;background:#d4a8d4;top:35%;left:68%;}
+.wc4{width:130px;height:130px;background:var(--dusty-rose);bottom:25%;left:6%;}
+
+.envelope-wrap{
+  cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:28px;
+  -webkit-tap-highlight-color:transparent;will-change:transform;
+}
+.envelope{width:240px;height:168px;position:relative;animation:envFloat 3.4s ease-in-out infinite;will-change:transform;}
+@keyframes envFloat{0%,100%{transform:translateY(0) rotate(-0.5deg);}50%{transform:translateY(-14px) rotate(0.5deg);}}
+
+/* V4: Envelope hover jiggle */
+.envelope:hover{animation:v4Jiggle 0.5s ease-in-out infinite alternate;}
+@keyframes v4Jiggle{0%{transform:rotate(-1deg) translateY(-3px);}100%{transform:rotate(1deg) translateY(0px);}}
+
+.env-body{
+  width:240px;height:168px;
+  background:linear-gradient(145deg,#fffaf5,#fde8c8);
+  border-radius:8px;position:absolute;
+  box-shadow:0 12px 40px rgba(180,120,80,0.22),0 2px 8px rgba(180,120,80,0.1);
+  border:1.5px solid #e8c99a;
+}
+.env-flap{
+  width:0;height:0;
+  border-left:122px solid transparent;border-right:122px solid transparent;
+  border-top:88px solid #f5dab0;
+  position:absolute;top:0;left:-1px;
+  transform-origin:top center;
+  transition:transform 0.7s var(--ease-premium);
+  will-change:transform;
+}
+.envelope.open .env-flap{transform:rotateX(180deg);}
+.env-bottom{width:0;height:0;border-left:120px solid transparent;border-right:120px solid transparent;border-bottom:84px solid #fbecd5;position:absolute;bottom:0;left:0;}
+.env-left{width:0;height:0;border-bottom:84px solid #f7e0be;border-right:120px solid transparent;position:absolute;bottom:0;left:0;}
+.env-right{width:0;height:0;border-bottom:84px solid #f0d4a8;border-left:120px solid transparent;position:absolute;bottom:0;right:0;}
+.env-seal{
+  width:42px;height:42px;background:radial-gradient(circle,#e8927a,#c96b52);
+  border-radius:50%;position:absolute;top:50%;left:50%;transform:translate(-50%,-18%);
+  display:flex;align-items:center;justify-content:center;font-size:18px;
+  box-shadow:0 3px 12px rgba(200,100,80,0.35);
+  transition:transform 0.4s var(--ease-premium),opacity 0.3s;
+}
+.envelope.open .env-seal{transform:translate(-50%,-18%) scale(0);opacity:0;}
+.env-inner-letter{
+  position:absolute;width:200px;
+  background:linear-gradient(170deg,#fff5f8,#fffaf5);
+  border-radius:4px;top:10px;left:19px;height:145px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Dancing Script',cursive;font-size:13px;color:#b08090;
+  opacity:0;transition:opacity 0.5s ease 0.35s;
+  box-shadow:0 2px 10px rgba(0,0,0,0.06);
+}
+.envelope.open .env-inner-letter{opacity:1;}
+.tap-hint{
+  font-family:'Poppins',sans-serif;font-size:13px;color:#b0906e;
+  letter-spacing:3px;text-transform:uppercase;
+  animation:hintPulse 2.2s ease-in-out infinite;
+}
+@keyframes hintPulse{0%,100%{opacity:0.3;transform:translateY(0);}50%{opacity:1;transform:translateY(-3px);}}
+
+/* V4: Falling petals */
+.v4-falling-petal{
+  position:fixed;pointer-events:none;z-index:99;
+  font-size:14px;will-change:transform,opacity;
+  animation:v4PetalFall linear forwards;
+}
+@keyframes v4PetalFall{
+  0%{transform:translateY(-20px) rotate(0deg);opacity:1;}
+  100%{transform:translateY(105vh) rotate(540deg);opacity:0;}
+}
+
+/* ===== SCENE 2: FLOWER CANVAS ===== */
+#flower-canvas{
+  position:fixed;inset:0;z-index:51;pointer-events:none;opacity:0;
+  transition:opacity 0.4s ease;will-change:opacity;
+}
+#flower-canvas.show{opacity:1;}
+
+/* ===== SCENE 3: OCEAN SCRAPBOOK ===== */
+#scene3{
+  position:fixed;inset:0;overflow-y:auto;overflow-x:hidden;
+  z-index:1;opacity:0;transition:opacity 1.1s var(--ease-premium);will-change:opacity;
+}
+#scene3.show{opacity:1;}
+#scene3::-webkit-scrollbar{width:4px;}
+#scene3::-webkit-scrollbar-thumb{background:rgba(180,160,220,0.35);border-radius:2px;}
+.ocean-bg{
+  min-height:100%;
+  background:linear-gradient(170deg,var(--sky) 0%,var(--lavender) 22%,var(--soft-pink) 48%,#c8e8f0 74%,var(--sky) 100%);
+  position:relative;padding:22px 16px 48px;
+  animation:bgDrift 14s ease-in-out infinite alternate;
+}
+@keyframes bgDrift{0%{filter:hue-rotate(0deg) brightness(1);}100%{filter:hue-rotate(18deg) brightness(1.04);}}
+
+/* Bubbles */
+.bubble{
+  position:fixed;border-radius:50%;
+  background:rgba(255,255,255,0.22);border:1px solid rgba(255,255,255,0.45);
+  animation:bubbleRise linear infinite;pointer-events:none;z-index:2;will-change:transform;
+}
+@keyframes bubbleRise{
+  0%{transform:translateY(100vh) translateX(0);opacity:0;}
+  8%{opacity:0.9;}88%{opacity:0.5;}
+  100%{transform:translateY(-80px) translateX(var(--drift));opacity:0;}
+}
+
+/* Betta */
+.betta{
+  position:fixed;top:var(--fish-top);left:-130px;z-index:3;pointer-events:none;
+  animation:fishSwim var(--swim-dur) linear infinite;animation-delay:var(--swim-delay);will-change:transform;
+}
+@keyframes fishSwim{0%{left:-130px;opacity:0;}5%{opacity:1;}90%{opacity:1;}100%{left:calc(100vw + 130px);opacity:0;}}
+.betta-svg{width:82px;height:46px;filter:drop-shadow(0 0 8px rgba(180,100,220,0.35));}
+
+/* Scroll Reveal */
+.reveal{
+  opacity:0;transform:translateY(40px);
+  transition:opacity 0.75s var(--ease-premium),transform 0.75s var(--ease-premium);
+  will-change:transform,opacity;
+}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.s3-block{margin-bottom:22px;}
+
+/* ===== V4: TACTILE BUTTON ===== */
+.v4-taktil-btn{transition:transform 0.1s ease,box-shadow 0.1s ease !important;}
+.v4-taktil-btn:active{transform:scale(0.96) !important;}
+
+/* ===== LETTER CARD ===== */
+.letter-card{
+  background:linear-gradient(135deg,#fce8ee,#fff4f8,#fde8f0);
+  border-radius:18px;padding:26px 22px 22px;
+  box-shadow:0 6px 30px rgba(200,100,130,0.14);
+  border:1px solid rgba(240,190,210,0.5);position:relative;
+}
+.letter-card::before{
+  content:'✉';position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+  background:#fff4f8;border-radius:50%;width:30px;height:30px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;box-shadow:0 2px 8px rgba(200,100,130,0.18);
+  line-height:30px;text-align:center;
+}
+.letter-from{font-family:'Dancing Script',cursive;font-size:13px;color:#c47090;margin-bottom:4px;}
+.letter-to{font-family:'Dancing Script',cursive;font-size:16px;color:#a04060;font-weight:700;margin-bottom:16px;}
+
+/* V4: Shimmer name */
+.v4-shimmer-name{
+  background:linear-gradient(90deg,#a04060,#DCAE96,#c8a060,#DCAE96,#a04060);
+  background-size:300% 100%;
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent;
+  animation:v4Shimmer 3.5s linear infinite;
+  font-weight:700;
+}
+@keyframes v4Shimmer{0%{background-position:100% 0;}100%{background-position:-100% 0;}}
+
+.letter-greeting{font-family:'Caveat',cursive;font-size:15px;color:#c47090;margin-bottom:8px;min-height:22px;}
+.letter-body{font-family:'Caveat',cursive;font-size:18px;line-height:1.75;color:#7a4060;min-height:120px;}
+.letter-heart{text-align:right;font-size:24px;margin-top:12px;}
+
+/* ===== MUSIC PLAYER ===== */
+.music-player{
+  background:rgba(255,255,255,0.25);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,0.55);border-radius:22px;padding:16px 18px 20px;
+  box-shadow:0 8px 36px rgba(160,120,200,0.18);
+  position:relative;display:flex;align-items:center;gap:14px;
+}
+.album-disc{
+  width:58px;height:58px;border-radius:50%;
+  background:linear-gradient(135deg,#2c1060,#6040a0,#402080);
+  flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  position:relative;box-shadow:0 4px 18px rgba(80,40,160,0.45);will-change:transform;
+}
+.album-disc::after{content:'';width:17px;height:17px;background:#f0e8f8;border-radius:50%;position:absolute;}
+.album-disc.spinning{animation:discSpin 3s linear infinite;}
+@keyframes discSpin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+.music-info{flex:1;min-width:0;}
+.song-title{font-size:13px;font-weight:600;color:#3a2060;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.song-artist{font-size:11px;color:#7060a0;margin-top:2px;}
+.song-cover{font-size:10px;color:#a090c0;margin-top:1px;}
+.play-btn{
+  width:42px;height:42px;border-radius:50%;
+  background:linear-gradient(135deg,#8060d0,#5030a0);
+  border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:16px;
+  box-shadow:0 4px 14px rgba(120,80,200,0.38);
+  flex-shrink:0;-webkit-tap-highlight-color:transparent;
+  transition:transform 0.15s var(--ease-premium);will-change:transform;
+}
+.play-btn:active{transform:scale(0.9);}
+.music-progress{
+  position:absolute;bottom:0;left:18px;right:18px;
+  height:3px;background:rgba(200,180,240,0.28);border-radius:2px;overflow:hidden;
+}
+.music-bar{
+  height:100%;width:0%;background:linear-gradient(90deg,#a080e0,#c0a0f8);
+  border-radius:2px;animation:progRun 240s linear infinite paused;will-change:width;
+}
+.music-bar.playing{animation-play-state:running;}
+@keyframes progRun{from{width:0%;}to{width:100%;}}
+audio{display:none;}
+
+/* ===== TIMELINE ===== */
+.timeline-section{
+  background:rgba(255,255,255,0.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.55);border-radius:18px;padding:20px 18px 20px 22px;
+  box-shadow:0 6px 24px rgba(140,120,200,0.12);
+}
+.timeline-heading{font-family:'Dancing Script',cursive;font-size:21px;color:#5a3070;margin-bottom:20px;text-align:center;}
+.tl-track{position:relative;padding-left:30px;}
+.tl-track::before{
+  content:'';position:absolute;left:9px;top:8px;bottom:8px;width:2px;
+  background:linear-gradient(180deg,#a0c8f8,#c0a0e8,#f0a0b8);border-radius:2px;
+}
+.tl-item{position:relative;margin-bottom:22px;transition:all 0.4s var(--ease-premium);}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{
+  position:absolute;left:-26px;top:5px;width:14px;height:14px;border-radius:50%;
+  border:2.5px solid #fff;background:var(--dot-c,#c0a0e8);
+  box-shadow:0 0 0 2.5px var(--dot-c,#c0a0e8);
+  transition:box-shadow 0.4s ease;
+}
+.tl-dot::after{
+  content:'';position:absolute;inset:-5px;border-radius:50%;
+  background:var(--dot-c,#c0a0e8);opacity:0.18;
+  animation:tlPulse 2.2s ease-in-out infinite;
+}
+@keyframes tlPulse{0%,100%{transform:scale(1);opacity:0.18;}50%{transform:scale(1.7);opacity:0;}}
+/* V4: Timeline glow when active */
+.tl-item.v4-active-glow .tl-dot{
+  box-shadow:0 0 0 3px var(--dot-c,#c0a0e8),0 0 16px 4px var(--dot-c,#c0a0e8);
+}
+.tl-era{font-size:10px;color:#a090c0;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:2px;}
+.tl-title{font-size:14px;font-weight:600;color:#4a3068;margin-bottom:4px;}
+.tl-desc{font-family:'Caveat',cursive;font-size:15.5px;color:#7060a0;line-height:1.55;}
+
+/* ===== CAROUSEL ===== */
+.carousel-section{position:relative;}
+.carousel-heading{font-family:'Dancing Script',cursive;font-size:22px;color:#5a3070;text-align:center;margin-bottom:14px;}
+.carousel-outer{position:relative;}
+.carousel-track-wrap{overflow:hidden;border-radius:14px;}
+.carousel-track{display:flex;transition:transform 0.5s var(--ease-premium);will-change:transform;}
+.carousel-slide{flex:0 0 100%;display:flex;justify-content:center;padding:10px 10px 42px;}
+.polaroid{
+  background:#fff;padding:10px 10px 0;
+  box-shadow:0 8px 32px rgba(0,0,0,0.18);border-radius:3px;
+  width:min(260px,80vw);position:relative;
+  transform:rotate(var(--rot,0deg));
+  transition:transform 0.3s var(--ease-premium);will-change:transform;
+  cursor:pointer;
+}
+.polaroid img{width:100%;height:min(200px,55vw);object-fit:cover;display:block;background:#e8d8e8;}
+.polaroid-caption{font-family:'Caveat',cursive;font-size:15px;color:#7a5060;text-align:center;padding:10px 8px 14px;}
+.c-arrow{
+  position:absolute;top:50%;z-index:10;width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,0.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,0.8);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:16px;color:#5a3070;
+  box-shadow:0 3px 14px rgba(0,0,0,0.12);
+  transform:translateY(-60%);transition:background 0.2s,transform 0.2s var(--ease-premium);
+  -webkit-tap-highlight-color:transparent;
+}
+.c-arrow:active{transform:translateY(-60%) scale(0.92);}
+.c-arrow.prev{left:4px;}
+.c-arrow.next{right:4px;}
+.c-dots{display:flex;justify-content:center;gap:8px;margin-top:6px;}
+.c-dot{width:7px;height:7px;border-radius:50%;background:rgba(160,120,200,0.35);transition:background 0.3s,transform 0.3s;cursor:pointer;}
+.c-dot.active{background:#9060c0;transform:scale(1.35);}
+
+/* ===== MEMORY MAP ===== */
+.map-card{
+  background:rgba(255,255,255,0.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border-radius:18px;overflow:hidden;box-shadow:0 6px 24px rgba(100,120,200,0.16);
+  border:1px solid rgba(255,255,255,0.7);
+}
+.map-header{padding:14px 16px 10px;background:rgba(255,255,255,0.5);}
+.map-title{font-size:15px;font-weight:600;color:#3a4080;display:flex;align-items:center;gap:8px;}
+.map-img-wrap{position:relative;}
+.map-img-wrap img{width:100%;height:185px;object-fit:cover;display:block;background:#d8e4f8;}
+.map-pin{position:absolute;top:38%;left:44%;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center;pointer-events:none;}
+.pin-icon{width:28px;height:28px;background:#e84040;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 3px 12px rgba(230,60,60,0.5);}
+.pin-icon::after{content:'';width:10px;height:10px;background:#fff;border-radius:50%;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);}
+
+/* V4: Sonar pulse on pin */
+.pin-sonar{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%) rotate(45deg);
+  width:28px;height:28px;border-radius:50% 50% 50% 0;
+  animation:v4Sonar 2s ease-out infinite;
+  background:rgba(232,64,64,0.3);
+  pointer-events:none;
+}
+@keyframes v4Sonar{
+  0%{transform:translate(-50%,-50%) scale(1) rotate(45deg);opacity:0.6;}
+  100%{transform:translate(-50%,-50%) scale(2.8) rotate(45deg);opacity:0;}
+}
+.pin-label{background:rgba(30,30,70,0.85);color:#fff;font-size:10px;border-radius:6px;padding:4px 8px;margin-top:6px;white-space:nowrap;}
+
+/* ===== VOICE NOTE ===== */
+.voice-card{
+  background:rgba(255,255,255,0.48);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-radius:18px;padding:18px 18px 20px;
+  box-shadow:0 6px 24px rgba(120,100,200,0.13);border:1px solid rgba(255,255,255,0.68);
+}
+.voice-label{font-size:12px;color:#8080b0;margin-bottom:14px;display:flex;align-items:center;gap:6px;}
+.voice-label::before{content:'🎤';}
+.voice-ui{display:flex;align-items:center;gap:12px;}
+.voice-play{
+  width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,#60b0e0,#3880b0);
+  border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:15px;box-shadow:0 3px 12px rgba(60,140,220,0.32);flex-shrink:0;
+  transition:transform 0.15s var(--ease-premium);
+}
+.voice-play:active{transform:scale(0.9);}
+.waveform{flex:1;height:40px;display:flex;align-items:center;gap:2px;overflow:hidden;}
+.wave-bar{flex-shrink:0;width:3px;border-radius:2px;opacity:0.75;will-change:height;}
+.voice-time{font-size:11px;color:#8090b0;min-width:36px;text-align:right;}
+
+/* ===== V4: COUNTDOWN ===== */
+.v4-countdown-card{
+  background:linear-gradient(135deg,rgba(44,62,80,0.85),rgba(60,40,100,0.8));
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,0.18);
+  border-radius:18px;padding:20px 18px;
+  box-shadow:0 8px 32px rgba(20,10,40,0.25);
+  text-align:center;
+}
+.v4-cd-title{font-family:'Playfair Display',serif;font-size:14px;color:rgba(255,255,255,0.75);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;}
+.v4-cd-grid{display:flex;justify-content:center;gap:10px;}
+.v4-cd-unit{display:flex;flex-direction:column;align-items:center;gap:4px;}
+.v4-cd-num{
+  font-family:'Playfair Display',serif;font-size:28px;font-weight:700;
+  color:#fff;background:rgba(255,255,255,0.1);
+  border:1px solid rgba(255,255,255,0.2);
+  border-radius:10px;width:58px;line-height:1;
+  padding:10px 4px 8px;
+  text-shadow:0 0 20px rgba(220,174,150,0.6);
+}
+.v4-cd-lbl{font-size:9px;color:rgba(255,255,255,0.5);letter-spacing:1.5px;text-transform:uppercase;}
+.v4-cd-sub{font-family:'Caveat',cursive;font-size:14px;color:rgba(220,174,150,0.8);margin-top:12px;}
+
+/* ===== V4: LOVE TICKER ===== */
+.v4-love-ticker{
+  background:rgba(255,255,255,0.3);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.55);
+  border-radius:16px;padding:16px 18px;
+  display:flex;align-items:center;gap:14px;
+  box-shadow:0 4px 20px rgba(200,100,130,0.13);
+}
+.v4-lt-heart{font-size:28px;animation:heartbeat 1.8s ease-in-out infinite;flex-shrink:0;}
+@keyframes heartbeat{0%,100%{transform:scale(1);}14%{transform:scale(1.2);}28%{transform:scale(1);}}
+.v4-lt-info{flex:1;}
+.v4-lt-label{font-size:11px;color:#a060a0;font-weight:500;letter-spacing:0.5px;margin-bottom:3px;}
+.v4-lt-time{font-family:'Playfair Display',serif;font-size:14px;color:var(--deep-navy);font-weight:600;}
+
+/* ===== V4: WISH JAR ===== */
+.v4-wish-jar-section{text-align:center;}
+.v4-wish-title{font-family:'Dancing Script',cursive;font-size:20px;color:#5a3070;margin-bottom:16px;}
+.v4-wish-jar{
+  display:inline-block;position:relative;cursor:default;
+}
+.v4-jar-svg{width:140px;height:170px;filter:drop-shadow(0 8px 20px rgba(160,120,200,0.25));}
+.v4-scrolls{
+  position:absolute;top:38px;left:50%;transform:translateX(-50%);
+  display:flex;flex-wrap:wrap;justify-content:center;gap:6px;width:110px;
+}
+.v4-scroll{
+  width:22px;height:22px;border-radius:50%;
+  background:linear-gradient(135deg,#fce8d0,#f8d0b0);
+  border:1.5px solid rgba(220,174,150,0.6);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:11px;box-shadow:0 2px 8px rgba(180,120,80,0.2);
+  transition:transform 0.2s var(--ease-premium),box-shadow 0.2s;
+  -webkit-tap-highlight-color:transparent;
+}
+.v4-scroll:active{transform:scale(0.9);}
+.v4-scroll:hover{transform:scale(1.15);box-shadow:0 4px 14px rgba(220,174,150,0.4);}
+.v4-wish-hint{font-family:'Caveat',cursive;font-size:14px;color:#a080b0;margin-top:10px;}
+
+/* V4: Wish modal */
+#v4-wish-modal{
+  position:fixed;inset:0;z-index:400;
+  background:rgba(20,10,40,0.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;padding:24px;
+  opacity:0;pointer-events:none;transition:opacity 0.4s var(--ease-premium);
+}
+#v4-wish-modal.show{opacity:1;pointer-events:all;}
+.v4-wish-modal-card{
+  background:rgba(255,255,255,0.22);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+  border:1px solid rgba(255,255,255,0.45);border-radius:22px;
+  padding:30px 26px 26px;max-width:340px;width:100%;
+  transform:scale(0.88);transition:transform 0.45s var(--ease-premium);
+  text-align:center;position:relative;
+}
+#v4-wish-modal.show .v4-wish-modal-card{transform:scale(1);}
+.v4-wm-icon{font-size:36px;margin-bottom:10px;}
+.v4-wm-title{font-family:'Playfair Display',serif;font-size:16px;color:#fff;font-style:italic;margin-bottom:8px;}
+.v4-wm-divider{width:40px;height:1.5px;background:rgba(255,255,255,0.5);margin:8px auto 14px;}
+.v4-wm-text{font-family:'Caveat',cursive;font-size:19px;color:rgba(255,255,255,0.92);line-height:1.7;}
+.v4-wm-close{
+  position:absolute;top:10px;right:12px;background:rgba(255,255,255,0.18);
+  border:none;width:28px;height:28px;border-radius:50%;color:rgba(255,255,255,0.8);
+  font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+}
+
+/* ===== SCENE 4: SECRET MESSAGE ===== */
+#scene4-trigger{
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  cursor:pointer;padding:10px 0 4px;-webkit-tap-highlight-color:transparent;
+}
+.s4-hint{font-family:'Dancing Script',cursive;font-size:15px;color:#9070b0;animation:hintPulse 2.5s ease-in-out infinite;text-align:center;}
+.s4-icon{font-size:28px;animation:heartbeat 1.8s ease-in-out infinite;}
+#scene4-overlay{
+  position:fixed;inset:0;z-index:300;
+  background:rgba(20,10,40,0.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity 0.6s var(--ease-premium);
+  padding:20px;will-change:opacity;
+}
+#scene4-overlay.show{opacity:1;pointer-events:all;}
+.s4-card{
+  background:rgba(255,255,255,0.20);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+  border:1px solid rgba(255,255,255,0.45);border-radius:22px;
+  padding:32px 26px 28px;max-width:380px;width:100%;
+  box-shadow:0 20px 60px rgba(0,0,0,0.25),inset 0 1px 0 rgba(255,255,255,0.4);
+  transform:scale(0.9) translateY(20px);transition:transform 0.55s var(--ease-premium);
+  position:relative;will-change:transform;
+}
+#scene4-overlay.show .s4-card{transform:scale(1) translateY(0);}
+.s4-title{font-family:'Playfair Display',serif;font-size:20px;color:#fff;text-align:center;margin-bottom:4px;font-style:italic;letter-spacing:0.5px;text-shadow:0 2px 10px rgba(0,0,0,0.2);}
+.s4-divider{width:50px;height:1.5px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.7),transparent);margin:12px auto 18px;}
+.s4-body{font-family:'Caveat',cursive;font-size:18px;color:rgba(255,255,255,0.93);line-height:1.75;text-align:center;}
+.s4-close{
+  position:absolute;top:12px;right:14px;background:rgba(255,255,255,0.18);
+  border:none;width:28px;height:28px;border-radius:50%;color:rgba(255,255,255,0.8);
+  font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:background 0.2s;
+}
+.s4-close:hover{background:rgba(255,255,255,0.28);}
+.s4-stars{text-align:center;font-size:20px;margin-top:16px;letter-spacing:6px;}
+
+/* V4: Floating lanterns in scene 4 */
+.v4-lantern{
+  position:fixed;border-radius:50%;pointer-events:none;z-index:299;
+  will-change:transform,opacity;
+  animation:v4LanternFloat linear forwards;
+}
+@keyframes v4LanternFloat{
+  0%{transform:translateY(0) scale(1);opacity:0.9;}
+  100%{transform:translateY(-110vh) scale(0.6);opacity:0;}
+}
+
+/* ===== V4: WHATSAPP + REPLAY BUTTONS ===== */
+.v4-bottom-actions{display:flex;flex-direction:column;align-items:center;gap:12px;padding:8px 0 16px;}
+.v4-wa-btn{
+  display:flex;align-items:center;gap:10px;
+  background:linear-gradient(135deg,#25D366,#1DA851);
+  color:#fff;text-decoration:none;border-radius:50px;
+  padding:12px 24px;font-size:14px;font-weight:600;
+  box-shadow:0 4px 18px rgba(37,211,102,0.35);
+  transition:transform 0.15s var(--ease-premium),box-shadow 0.15s;
+  -webkit-tap-highlight-color:transparent;
+}
+.v4-wa-btn:active{transform:scale(0.96);}
+.v4-wa-icon{font-size:20px;}
+.v4-replay-btn{
+  background:rgba(255,255,255,0.35);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.6);border-radius:50px;
+  padding:10px 22px;font-size:13px;color:#5a3070;font-weight:500;
+  cursor:pointer;display:flex;align-items:center;gap:8px;
+  box-shadow:0 3px 14px rgba(160,120,200,0.15);
+  transition:transform 0.15s var(--ease-premium);
+  -webkit-tap-highlight-color:transparent;font-family:'Poppins',sans-serif;
+}
+.v4-replay-btn:active{transform:scale(0.96);}
+
+/* ===== FOOTER ===== */
+.footer-note{text-align:center;padding:12px 0 8px;font-family:'Dancing Script',cursive;font-size:18px;color:#7060a0;}
+
+/* ===== V4: LIGHTBOX ===== */
+#v4-lightbox{
+  position:fixed;inset:0;z-index:500;
+  background:rgba(0,0,0,0.88);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity 0.4s var(--ease-premium);
+  padding:20px;
+}
+#v4-lightbox.show{opacity:1;pointer-events:all;}
+#v4-lightbox img{
+  max-width:100%;max-height:85vh;border-radius:6px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.5);
+  transform:scale(0.9);transition:transform 0.4s var(--ease-premium);
+}
+#v4-lightbox.show img{transform:scale(1);}
+.v4-lb-close{
+  position:absolute;top:16px;right:16px;
+  background:rgba(255,255,255,0.15);border:none;
+  width:36px;height:36px;border-radius:50%;
+  color:#fff;font-size:18px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* ===== V4: PARTICLE TRAIL ===== */
+.v4-particle{
+  position:fixed;pointer-events:none;z-index:9990;
+  font-size:16px;line-height:1;
+  animation:v4ParticleFly 0.8s ease-out forwards;
+  will-change:transform,opacity;
+}
+@keyframes v4ParticleFly{
+  0%{transform:translate(-50%,-50%) scale(1);opacity:1;}
+  100%{transform:translate(-50%,-120%) scale(0.4);opacity:0;}
+}
+</style>
+</head>
+<body>
+
+<!-- V4: PRELOADER -->
+<div id="v4-preloader">
+  <div class="v4-pre-emoji">🌸</div>
+  <div class="v4-pre-text">Sedang menyiapkan ruang kenangan<br>untuk Annisa...</div>
+  <div class="v4-pre-dots">
+    <div class="v4-pre-dot"></div>
+    <div class="v4-pre-dot"></div>
+    <div class="v4-pre-dot"></div>
+  </div>
+</div>
+
+<!-- V4: PROGRESS BAR -->
+<div id="v4-progress-bar"></div>
+
+<!-- AUDIO -->
+<audio id="bg-music" src="sorrowful-reunion.mp3" loop></audio>
+
+<!-- ===== SCENE 1: ENVELOPE ===== -->
+<div id="scene1">
+  <div class="wc-blob wc1"></div>
+  <div class="wc-blob wc2"></div>
+  <div class="wc-blob wc3"></div>
+  <div class="wc-blob wc4"></div>
+  <div class="envelope-wrap" id="envelopeWrap" onclick="openEnvelope()">
+    <div class="envelope" id="envelope">
+      <div class="env-body"></div>
+      <div class="env-flap"></div>
+      <div class="env-bottom"></div>
+      <div class="env-left"></div>
+      <div class="env-right"></div>
+      <div class="env-seal">💌</div>
+      <div class="env-inner-letter">Untuk Annisa ❤️</div>
+    </div>
+    <div class="tap-hint">✦ Tap to open ✦</div>
+  </div>
+</div>
+
+<!-- SCENE 2: FLOWER CANVAS -->
+<canvas id="flower-canvas"></canvas>
+
+<!-- SCENE 3 -->
+<div id="scene3">
+  <div class="ocean-bg" id="oceanBg">
+
+    <!-- LETTER -->
+    <div class="letter-card s3-block reveal">
+      <div class="letter-from">From: [Masukkan Nama Anda Di Sini]</div>
+      <div class="letter-to">For: <span class="v4-shimmer-name">Siti Annisa Syazwina Nur'ain Yusuf</span> 🎀</div>
+      <div class="letter-greeting" id="letterGreeting"></div>
+      <div class="letter-body" id="letterBody"></div>
+      <div class="letter-heart">❤️</div>
+    </div>
+
+    <!-- MUSIC PLAYER -->
+    <div class="music-player s3-block reveal">
+      <div class="album-disc" id="albumDisc"><span style="font-size:22px;position:relative;z-index:1;">🎵</span></div>
+      <div class="music-info">
+        <div class="song-title">Sorrowful Reunion</div>
+        <div class="song-artist">Reality Club</div>
+        <div class="song-cover">(Acoustic Cover)</div>
+      </div>
+      <button class="play-btn v4-taktil-btn" id="playBtn" onclick="toggleMusic()" aria-label="Play/Pause">▶</button>
+      <div class="music-progress"><div class="music-bar" id="musicBar"></div></div>
+    </div>
+
+    <!-- LOVE TICKER -->
+    <div class="v4-love-ticker s3-block reveal">
+      <div class="v4-lt-heart">❤️</div>
+      <div class="v4-lt-info">
+        <div class="v4-lt-label">Sudah bersama selama</div>
+        <div class="v4-lt-time" id="v4LoveTicker">Menghitung...</div>
+      </div>
+    </div>
+
+    <!-- COUNTDOWN -->
+    <div class="v4-countdown-card s3-block reveal">
+      <div class="v4-cd-title">Menuju Babak Baru — SMA ✨</div>
+      <div class="v4-cd-grid">
+        <div class="v4-cd-unit"><div class="v4-cd-num" id="cdDay">--</div><div class="v4-cd-lbl">Hari</div></div>
+        <div class="v4-cd-unit"><div class="v4-cd-num" id="cdHour">--</div><div class="v4-cd-lbl">Jam</div></div>
+        <div class="v4-cd-unit"><div class="v4-cd-num" id="cdMin">--</div><div class="v4-cd-lbl">Menit</div></div>
+        <div class="v4-cd-unit"><div class="v4-cd-num" id="cdSec">--</div><div class="v4-cd-lbl">Detik</div></div>
+      </div>
+      <div class="v4-cd-sub">13 Juli 2026 — Hari pertamamu di SMA 🌸</div>
+    </div>
+
+    <!-- TIMELINE -->
+    <div class="timeline-section s3-block reveal">
+      <div class="timeline-heading">🌸 Garis Waktu Perjalananmu</div>
+      <div class="tl-track" id="tlTrack">
+        <div class="tl-item">
+          <div class="tl-dot" style="--dot-c:#a0c8f8;"></div>
+          <div class="tl-era">Awal Memulai</div>
+          <div class="tl-title">Hari Pertama di SMP</div>
+          <div class="tl-desc">Melangkah masuk ke Habibi Bina Cendikia dengan seragam putih biru yang masih bersih dan hati penuh semangat.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="--dot-c:#c0a0e8;"></div>
+          <div class="tl-era">Proses Pendewasaan</div>
+          <div class="tl-title">Melewati Ujian yang Pahit</div>
+          <div class="tl-desc">Tugas menumpuk, ujian datang silih berganti. Kamu melewatinya dengan cara yang luar biasa.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="--dot-c:#f0a0b8;"></div>
+          <div class="tl-era">Hari Kelulusan</div>
+          <div class="tl-title">Puncak dari Usahamu ✨</div>
+          <div class="tl-desc">Semua perjuangan berbuah manis. Toga di kepala, senyum di wajah — ini momen yang kamu layak dapatkan.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAROUSEL -->
+    <div class="carousel-section s3-block reveal">
+      <div class="carousel-heading">📸 Memories</div>
+      <div class="carousel-outer">
+        <button class="c-arrow prev v4-taktil-btn" onclick="carouselMove(-1)" aria-label="Previous">‹</button>
+        <div class="carousel-track-wrap">
+          <div class="carousel-track" id="cTrack">
+            <div class="carousel-slide"><div class="polaroid" style="--rot:-2.5deg;"><img src="toga.jpg" alt="Gadis Cantik Ber Toga"><div class="polaroid-caption">Gadis Cantik Ber Toga ✨</div></div></div>
+            <div class="carousel-slide"><div class="polaroid" style="--rot:2deg;"><img src="selfie.jpg" alt="Always glowing"><div class="polaroid-caption">Always glowing 💫</div></div></div>
+            <div class="carousel-slide"><div class="polaroid" style="--rot:-1.5deg;"><img src="berdua.jpg" alt="Our Best Moment"><div class="polaroid-caption">Our Best Moment 🤍</div></div></div>
+            <div class="carousel-slide">
+                <div class="polaroid" style="--rot:-2.2deg;">
+                    <img src="723830628_1554022869432252_8879027139854870645_n.jpg" alt="Memori Baru">
+                    <div class="polaroid-caption">Momen hangat bersama yang selalu berharga 🤍</div>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <div class="polaroid" style="--rot:1.8deg;">
+                    <img src="724414301_1532118101594411_1986044778788249279_n.jpg" alt="Memori Baru">
+                    <div class="polaroid-caption">Vibes West Coast dan kamu... kombinasi sempurna 🥀🎶</div>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <div class="polaroid" style="--rot:-1.5deg;">
+                    <img src="728511758_3042949835875289_6968711047641051585_n.jpg" alt="Memori Baru">
+                    <div class="polaroid-caption">Gaya andalan! Selalu manis dan bikin semangat 👍✨</div>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <div class="polaroid" style="--rot:2.5deg;">
+                    <img src="672736723_981307801249298_5782291507108425355_n.jpg" alt="Memori Baru">
+                    <div class="polaroid-caption">Si gemas kesayangan yang selalu bikin rindu 🐾🤍</div>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <div class="polaroid" style="--rot:-2.8deg;">
+                    <img src="724789491_979542151533007_6201620782840689243_n.jpg" alt="Memori Baru">
+                    <div class="polaroid-caption">Tatapan dan senyum yang selalu bikin jatuh cinta 🌸</div>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <div class="polaroid" style="--rot:1.2deg;">
+                    <img src="724838292_1915980322315710_3677814558167948459_n.jpg" alt="Memori Baru">
+                    <div class="polaroid-caption">Lagi serius lihat layar aja cantiknya nggak luntur ✨</div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <button class="c-arrow next v4-taktil-btn" onclick="carouselMove(1)" aria-label="Next">›</button>
+      </div>
+      <div class="c-dots" id="cDots">
+        <div class="c-dot active" onclick="carouselGo(0)"></div>
+        <div class="c-dot" onclick="carouselGo(1)"></div>
+        <div class="c-dot" onclick="carouselGo(2)"></div>
+        <div class="c-dot" onclick="carouselGo(3)"></div>
+        <div class="c-dot" onclick="carouselGo(4)"></div>
+        <div class="c-dot" onclick="carouselGo(5)"></div>
+        <div class="c-dot" onclick="carouselGo(6)"></div>
+        <div class="c-dot" onclick="carouselGo(7)"></div>
+        <div class="c-dot" onclick="carouselGo(8)"></div>
+      </div>
+    </div>
+
+    <!-- WISH JAR -->
+    <div class="v4-wish-jar-section s3-block reveal">
+      <div class="v4-wish-title">🫙 Toples Harapan Untukmu</div>
+      <div class="v4-wish-jar">
+        <svg class="v4-jar-svg" viewBox="0 0 140 170" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="jarGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.5)"/>
+              <stop offset="40%" stop-color="rgba(255,255,255,0.15)"/>
+              <stop offset="100%" stop-color="rgba(255,255,255,0.4)"/>
+            </linearGradient>
+            <linearGradient id="lidGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="rgba(220,174,150,0.9)"/>
+              <stop offset="100%" stop-color="rgba(180,130,100,0.8)"/>
+            </linearGradient>
+          </defs>
+          <!-- Lid -->
+          <rect x="30" y="12" width="80" height="14" rx="6" fill="url(#lidGrad)" stroke="rgba(200,150,110,0.5)" stroke-width="1"/>
+          <rect x="38" y="7" width="64" height="9" rx="4" fill="rgba(200,150,110,0.7)" stroke="rgba(180,130,90,0.4)" stroke-width="1"/>
+          <!-- Jar body -->
+          <path d="M25 26 Q20 28 18 40 L14 145 Q13 158 70 160 Q127 158 126 145 L122 40 Q120 28 115 26 Z" fill="rgba(200,230,255,0.18)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+          <!-- Glass shine -->
+          <path d="M32 32 Q28 50 28 80 L30 80 Q30 52 34 34 Z" fill="url(#jarGrad)" opacity="0.7"/>
+          <path d="M100 35 Q106 55 105 90 L107 90 Q108 55 102 33 Z" fill="rgba(255,255,255,0.25)"/>
+        </svg>
+        <div class="v4-scrolls" id="v4Scrolls">
+          <div class="v4-scroll" onclick="openWish(0)">📜</div>
+          <div class="v4-scroll" onclick="openWish(1)">📜</div>
+          <div class="v4-scroll" onclick="openWish(2)">📜</div>
+          <div class="v4-scroll" onclick="openWish(3)">📜</div>
+          <div class="v4-scroll" onclick="openWish(4)">📜</div>
+        </div>
+      </div>
+      <div class="v4-wish-hint">Klik gulungan kertas untuk membuka harapan 🌸</div>
+    </div>
+
+    <!-- MEMORY MAP -->
+    <div class="map-card s3-block reveal">
+      <div class="map-header"><div class="map-title">📍 Memory Map</div></div>
+      <div class="map-img-wrap">
+        <img src="map.jpg" alt="Peta Bandung HB">
+        <div class="map-pin">
+          <div class="pin-sonar"></div>
+          <div class="pin-icon"></div>
+          <div class="pin-label">SMP Habibi Bina Cendikia, Bandung</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VOICE NOTE -->
+    <div class="voice-card s3-block reveal">
+      <div class="voice-label">Voice Note — untukmu</div>
+      <div class="voice-ui">
+        <button class="voice-play v4-taktil-btn" id="voicePlayBtn" onclick="toggleVoice()" aria-label="Play">▶</button>
+        <div class="waveform" id="waveform"></div>
+        <div class="voice-time" id="voiceTime">0:42</div>
+      </div>
+    </div>
+    <audio id="voice-audio" style="display:none;"></audio>
+
+    <!-- SCENE 4 TRIGGER -->
+    <div id="scene4-trigger" class="s3-block reveal" onclick="openSecret()">
+      <div class="s4-icon">💌</div>
+      <div class="s4-hint">Ada pesan rahasia untukmu…<br>✦ sentuh untuk membuka ✦</div>
+    </div>
+
+    <!-- BOTTOM ACTIONS -->
+    <div class="v4-bottom-actions s3-block reveal">
+      <a class="v4-wa-btn" href="https://wa.me/?text=Aku%20sudah%20baca%20surat%20rahasiamu...%20Terima%20kasih%20sayang%20%E2%9D%A4%EF%B8%8F" target="_blank" rel="noopener">
+        <span class="v4-wa-icon">💬</span> Balas Lewat WhatsApp
+      </a>
+      <button class="v4-replay-btn v4-taktil-btn" onclick="replayMemories()">
+        ↑ Putar Ulang Kenangan
+      </button>
+    </div>
+
+    <div class="footer-note">Selamat berpetualang di babak baru, Annisa! 🌸🐾</div>
+  </div>
+</div>
+
+<!-- SCENE 4 OVERLAY -->
+<div id="scene4-overlay" onclick="handleOverlayClick(event)">
+  <div class="s4-card">
+    <button class="s4-close" onclick="closeSecret()" aria-label="Tutup">✕</button>
+    <div class="s4-title">Pesan Rahasia</div>
+    <div class="s4-divider"></div>
+    <div class="s4-body">
+      Siti Annisa Syazwina Nur'ain Yusuf, di antara ribuan detik yang kita lalui, kelulusan ini hanyalah awal. Terima kasih telah menjadi alasan terbaik untuk tersenyum setiap hari. Mari berjanji, apapun tantangan SMA nanti, kita akan tetap berjalan berdampingan, sehangat pelukan kucing kesayanganmu dan seindah senja yang kita lalui bersama.<br><br>I love you, always. 🐾
+    </div>
+    <div class="s4-stars">✦ ✦ ✦</div>
+  </div>
+</div>
+
+<!-- WISH MODAL -->
+<div id="v4-wish-modal" onclick="handleWishOverlay(event)">
+  <div class="v4-wish-modal-card">
+    <button class="v4-wm-close" onclick="closeWish()">✕</button>
+    <div class="v4-wm-icon" id="v4WmIcon">🌸</div>
+    <div class="v4-wm-title">Harapan Untukmu</div>
+    <div class="v4-wm-divider"></div>
+    <div class="v4-wm-text" id="v4WmText"></div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="v4-lightbox" onclick="closeLightbox()">
+  <button class="v4-lb-close" onclick="closeLightbox()">✕</button>
+  <img id="v4LbImg" src="" alt="">
+</div>
+
+<script>
+/* ============================================================
+   V4 — COMPLETE JAVASCRIPT
+   ============================================================ */
+
+/* ---- PRELOADER ---- */
+window.addEventListener('load', function(){
+  setTimeout(function(){
+    var pre = document.getElementById('v4-preloader');
+    pre.classList.add('hide');
+    setTimeout(function(){ pre.style.display='none'; }, 900);
+  }, 1400);
+});
+
+/* ---- PROGRESS BAR ---- */
+document.getElementById('scene3').addEventListener('scroll', function(){
+  var el = this;
+  var scrollTop = el.scrollTop;
+  var scrollHeight = el.scrollHeight - el.clientHeight;
+  var pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+  document.getElementById('v4-progress-bar').style.width = pct + '%';
+});
+
+/* ---- MUSIC (no autoplay on load — triggered in openEnvelope) ---- */
+var music = document.getElementById('bg-music');
+var isPlaying = false;
+
+function syncMusicUI(playing){
+  var playBtn = document.getElementById('playBtn');
+  var disc = document.getElementById('albumDisc');
+  var bar = document.getElementById('musicBar');
+  if(playing){ playBtn.textContent='⏸'; disc.classList.add('spinning'); bar.classList.add('playing'); }
+  else { playBtn.textContent='▶'; disc.classList.remove('spinning'); bar.classList.remove('playing'); }
+}
+function toggleMusic(){
+  if(isPlaying){ music.pause(); isPlaying=false; }
+  else { music.play().catch(function(){}); isPlaying=true; }
+  syncMusicUI(isPlaying);
+}
+
+/* ---- AUDIO DUCKING for Voice Note ---- */
+var voiceAudio = document.getElementById('voice-audio');
+var duckInterval = null;
+function fadeVolume(target, duration){
+  clearInterval(duckInterval);
+  var start = music.volume;
+  var steps = 20;
+  var step = (target - start) / steps;
+  var delay = duration / steps;
+  var count = 0;
+  duckInterval = setInterval(function(){
+    count++;
+    music.volume = Math.min(1, Math.max(0, music.volume + step));
+    if(count >= steps){ clearInterval(duckInterval); music.volume = target; }
+  }, delay);
+}
+voiceAudio.addEventListener('play', function(){ fadeVolume(0.15, 600); });
+voiceAudio.addEventListener('pause', function(){ fadeVolume(1.0, 800); });
+voiceAudio.addEventListener('ended', function(){ fadeVolume(1.0, 800); });
+
+/* ---- DYNAMIC GREETING ---- */
+function getGreeting(){
+  var h = new Date().getHours();
+  if(h >= 0 && h < 11) return 'Selamat Pagi';
+  if(h >= 11 && h < 15) return 'Selamat Siang';
+  if(h >= 15 && h < 18) return 'Selamat Sore';
+  return 'Selamat Malam';
+}
+
+/* ---- TYPEWRITER ---- */
+var letterText = "Selamat atas kelulusan SMP-nya, sayang! Masa-masa berseragam putih biru di Habibi Bina Cendikia akhirnya selesai dengan indah. Segala tugas dan ujian yang kadang terasa sepahit kopi hitam kesukaanmu, kini terbayar lunas dengan hasil yang luar biasa manis. Ke depannya, semoga hari-harimu di SMA nanti senyaman pelukan kucing kesayangan dan selalu memberimu ketenangan semanis kenangan termanis yang pernah ada. Aku bangga padamu! 🐾";
+
+function typeWriter(elementId, text, speed){
+  var el = document.getElementById(elementId);
+  if(!el) return;
+  el.textContent = '';
+  var i = 0;
+  function step(){
+    if(i < text.length){
+      el.textContent += text.charAt(i);
+      i++;
+      setTimeout(step, speed);
+    }
+  }
+  setTimeout(step, 600);
+}
+
+/* ---- BUBBLES ---- */
+(function(){
+  var sizes=[5,8,10,7,12,6,9,11,8,6,10,7,9,6,8];
+  var lefts=[4,9,14,19,24,29,34,39,44,49,54,59,64,69,74,79,84,89,94];
+  for(var i=0;i<18;i++){
+    var b=document.createElement('div');b.className='bubble';
+    var sz=sizes[i%sizes.length];
+    var dur=6+(i*1.4)%9,delay=(i*0.65)%11;
+    var drift=(i%2===0?1:-1)*(10+(i*4)%22);
+    b.style.cssText='width:'+sz+'px;height:'+sz+'px;left:'+lefts[i%lefts.length]+'%;animation-duration:'+dur+'s;animation-delay:'+delay+'s;--drift:'+drift+'px;';
+    document.body.appendChild(b);
+  }
+})();
+
+/* ---- BETTA FISH ---- */
+(function(){
+  var fd=[
+    {top:'16%',dur:'23s',delay:'1s',c:'#c060e0,#8030b0,#e080d0'},
+    {top:'44%',dur:'29s',delay:'11s',c:'#4090e0,#2060b0,#60b0f8'},
+    {top:'68%',dur:'25s',delay:'19s',c:'#e06080,#b03060,#f090a0'}
+  ];
+  fd.forEach(function(f,i){
+    var div=document.createElement('div');div.className='betta';
+    div.style.setProperty('--fish-top',f.top);
+    div.style.setProperty('--swim-dur',f.dur);
+    div.style.setProperty('--swim-delay',f.delay);
+    var c=f.c.split(',');
+    div.innerHTML='<svg class="betta-svg" viewBox="0 0 82 46" xmlns="http://www.w3.org/2000/svg">'
+      +'<defs><radialGradient id="fg'+i+'" cx="40%" cy="50%"><stop offset="0%" stop-color="'+c[0]+'" stop-opacity="0.9"/><stop offset="100%" stop-color="'+c[1]+'" stop-opacity="0.7"/></radialGradient></defs>'
+      +'<ellipse cx="43" cy="23" rx="27" ry="11" fill="url(#fg'+i+')" opacity="0.85"/>'
+      +'<path d="M18 23 C8 10,0 8,4 20 C0 30,8 37,18 23Z" fill="'+c[2]+'" opacity="0.7"/>'
+      +'<path d="M29 14 C23 6,17 4,21 14Z" fill="'+c[0]+'" opacity="0.6"/>'
+      +'<path d="M29 32 C23 41,17 43,21 32Z" fill="'+c[0]+'" opacity="0.6"/>'
+      +'<circle cx="59" cy="21" r="3.2" fill="rgba(255,255,255,0.92)"/>'
+      +'<circle cx="60" cy="21" r="1.5" fill="'+c[1]+'"/>'
+      +'</svg>';
+    document.body.appendChild(div);
+  });
+})();
+
+/* ---- WAVEFORM ---- */
+(function(){
+  var wf=document.getElementById('waveform');
+  var hs=[8,14,20,28,22,16,30,24,18,12,26,20,14,24,18,28,16,22,10,20,26,14,30,18,12,24,20,16,28,22,8,18,24,12,26,20,14,22,16,28];
+  var cs=['#8ab0e8','#9ec0f0','#a8c8f8','#b0d0ff','#a0c0f0'];
+  hs.forEach(function(h,i){
+    var bar=document.createElement('div');bar.className='wave-bar';
+    bar.style.height=h+'px';
+    bar.style.background='linear-gradient(180deg,'+cs[i%cs.length]+',rgba(168,200,248,0.35))';
+    wf.appendChild(bar);
+  });
+})();
+
+/* ---- SCROLL REVEAL + TIMELINE GLOW ---- */
+function initScrollReveal(){
+  var els = document.querySelectorAll('.reveal');
+  var tlItems = document.querySelectorAll('.tl-item');
+
+  if(!('IntersectionObserver' in window)){
+    els.forEach(function(el){ el.classList.add('visible'); });
+    tlItems.forEach(function(el){ el.classList.add('v4-active-glow'); });
+    return;
+  }
+
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  },{threshold:0.10, rootMargin:'0px 0px -24px 0px'});
+  els.forEach(function(el,i){
+    el.style.transitionDelay=(i*0.06)+'s';
+    obs.observe(el);
+  });
+
+  var tlObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('v4-active-glow'); }
+      else { e.target.classList.remove('v4-active-glow'); }
+    });
+  },{threshold:0.5});
+  tlItems.forEach(function(el){ tlObs.observe(el); });
+}
+
+/* ---- FALLING PETALS (Scene 1 open) ---- */
+function spawnFallingPetals(){
+  var petals = ['🌸','🌸','🌺','🌷','✿','❀'];
+  for(var i=0;i<28;i++){
+    (function(idx){
+      setTimeout(function(){
+        var p = document.createElement('div');
+        p.className = 'v4-falling-petal';
+        p.textContent = petals[Math.floor(Math.random()*petals.length)];
+        p.style.left = (Math.random()*100) + 'vw';
+        p.style.top = '-20px';
+        var dur = 2.5 + Math.random()*3;
+        p.style.animationDuration = dur + 's';
+        p.style.fontSize = (10 + Math.random()*12) + 'px';
+        document.getElementById('scene1').appendChild(p);
+        setTimeout(function(){ p.remove(); }, dur*1000+200);
+      }, idx * 80);
+    })(i);
+  }
+}
+
+/* ---- ENVELOPE OPEN (with music trigger + falling petals) ---- */
+var scene1Done = false;
+function openEnvelope(){
+  if(scene1Done) return;
+  scene1Done = true;
+
+  /* Trigger music on user gesture — autoplay policy safe */
+  music.play().then(function(){
+    isPlaying = true;
+    syncMusicUI(true);
+  }).catch(function(e){ console.log('Autoplay blocked:', e); });
+
+  document.getElementById('envelope').classList.add('open');
+  spawnFallingPetals();
+  setTimeout(startFlowerTransition, 750);
+}
+
+/* ---- FLOWER BLOOM CANVAS ---- */
+function startFlowerTransition(){
+  var canvas = document.getElementById('flower-canvas');
+  var ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  canvas.classList.add('show');
+
+  var cx=canvas.width/2, cy=canvas.height/2;
+  var petals=[];
+  var palette=[
+    'rgba(255,255,255,0.85)','rgba(255,220,230,0.82)','rgba(255,200,215,0.8)',
+    'rgba(220,174,150,0.78)','rgba(255,180,200,0.75)','rgba(250,240,245,0.9)',
+    'rgba(240,160,185,0.78)','rgba(255,235,240,0.88)','rgba(210,140,160,0.75)','rgba(255,210,225,0.8)'
+  ];
+  var ringCfg=[
+    {count:1,r:0,delayBase:0},{count:10,r:60,delayBase:60},{count:18,r:130,delayBase:130},
+    {count:28,r:210,delayBase:210},{count:36,r:300,delayBase:290},{count:44,r:400,delayBase:370},
+    {count:52,r:500,delayBase:450},{count:60,r:640,delayBase:530},{count:36,r:760,delayBase:610}
+  ];
+  ringCfg.forEach(function(ring){
+    for(var j=0;j<ring.count;j++){
+      var angle=(j/ring.count)*Math.PI*2+(Math.random()-0.5)*0.3;
+      var spread=(Math.random()-0.5)*40;
+      petals.push({
+        x:cx+Math.cos(angle)*(ring.r+spread),
+        y:cy+Math.sin(angle)*(ring.r+spread)*0.92,
+        size:0,maxSize:14+Math.random()*22,
+        color:palette[Math.floor(Math.random()*palette.length)],
+        np:5+Math.floor(Math.random()*3),rot:Math.random()*Math.PI*2,
+        delay:ring.delayBase+Math.random()*90,spd:0.9+Math.random()*1.1,alpha:0
+      });
+    }
+  });
+  function drawPetal(ctx,x,y,sz,np,color,alpha,rot){
+    ctx.save();ctx.globalAlpha=alpha;ctx.translate(x,y);ctx.rotate(rot);
+    for(var p=0;p<np;p++){
+      ctx.save();ctx.rotate((p/np)*Math.PI*2);ctx.beginPath();ctx.fillStyle=color;
+      ctx.ellipse(0,-sz*0.52,sz*0.28,sz*0.48,0,0,Math.PI*2);ctx.fill();ctx.restore();
+    }
+    ctx.beginPath();var g=ctx.createRadialGradient(0,0,0,0,0,sz*0.22);
+    g.addColorStop(0,'rgba(255,235,110,0.95)');g.addColorStop(1,'rgba(220,170,60,0.8)');
+    ctx.arc(0,0,sz*0.2,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();ctx.restore();
+  }
+  var startT=null,phase='grow';
+  function animate(ts){
+    if(!startT) startT=ts;
+    var el=ts-startT;
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    var allGrown=true;
+    for(var i=0;i<petals.length;i++){
+      var p=petals[i],t=el-p.delay;
+      if(t<0){allGrown=false;continue;}
+      if(p.size<p.maxSize){p.size=Math.min(p.maxSize,p.size+p.spd*2.2);p.alpha=Math.min(1,p.size/p.maxSize);allGrown=false;}
+      p.rot+=0.003;
+      drawPetal(ctx,p.x,p.y,p.size,p.np,p.color,p.alpha,p.rot);
+    }
+    if(allGrown&&phase==='grow'){
+      phase='hold';
+      setTimeout(function(){
+        phase='fade';
+        document.getElementById('scene1').classList.add('fade-out');
+        var s3=document.getElementById('scene3');
+        s3.classList.add('show');
+        initScrollReveal();
+        /* Greeting + Typewriter */
+        document.getElementById('letterGreeting').textContent = getGreeting() + ', Annisa! 🌸';
+        typeWriter('letterBody', letterText, 28);
+        startCountdown();
+        startLoveTicker();
+
+        var fadeStart=null;
+        function fadeOut(ts2){
+          if(!fadeStart) fadeStart=ts2;
+          var prog=Math.min(1,(ts2-fadeStart)/1100);
+          ctx.clearRect(0,0,canvas.width,canvas.height);
+          for(var i=0;i<petals.length;i++){var p=petals[i];drawPetal(ctx,p.x,p.y,p.size,p.np,p.color,(1-prog)*p.alpha,p.rot);}
+          if(prog<1){requestAnimationFrame(fadeOut);}
+          else{
+            canvas.classList.remove('show');canvas.style.display='none';
+            setTimeout(function(){
+              var s1=document.getElementById('scene1');if(s1)s1.style.display='none';
+            },400);
+          }
+        }
+        requestAnimationFrame(fadeOut);
+      },1000);
+    }
+    if(phase==='grow') requestAnimationFrame(animate);
+  }
+  requestAnimationFrame(animate);
+}
+
+/* ---- COUNTDOWN (13 July 2026) ---- */
+function startCountdown(){
+  var target = new Date('2026-07-13T07:00:00');
+  function tick(){
+    var now = new Date();
+    var diff = target - now;
+    if(diff <= 0){
+      document.getElementById('cdDay').textContent='00';
+      document.getElementById('cdHour').textContent='00';
+      document.getElementById('cdMin').textContent='00';
+      document.getElementById('cdSec').textContent='00';
+      return;
+    }
+    var days=Math.floor(diff/86400000);
+    var hours=Math.floor((diff%86400000)/3600000);
+    var mins=Math.floor((diff%3600000)/60000);
+    var secs=Math.floor((diff%60000)/1000);
+    function pad(n){return n<10?'0'+n:''+n;}
+    document.getElementById('cdDay').textContent=pad(days);
+    document.getElementById('cdHour').textContent=pad(hours);
+    document.getElementById('cdMin').textContent=pad(mins);
+    document.getElementById('cdSec').textContent=pad(secs);
+  }
+  tick();
+  setInterval(tick,1000);
+}
+
+/* ---- LOVE TICKER (ganti YYYY-MM-DD sesuai tanggal hubungan) ---- */
+function startLoveTicker(){
+  var start = new Date('2024-01-01T00:00:00'); /* <-- GANTI TANGGAL INI */
+  function tick(){
+    var diff = new Date() - start;
+    var days=Math.floor(diff/86400000);
+    var hours=Math.floor((diff%86400000)/3600000);
+    var mins=Math.floor((diff%3600000)/60000);
+    var secs=Math.floor((diff%60000)/1000);
+    document.getElementById('v4LoveTicker').textContent=days+' hari, '+hours+' jam, '+mins+' menit, '+secs+' detik';
+  }
+  tick();
+  setInterval(tick,1000);
+}
+
+/* ---- CAROUSEL ---- */
+var cIdx=0,cTotal=3;
+function carouselMove(dir){ cIdx=(cIdx+dir+cTotal)%cTotal; applyCarousel(); }
+function carouselGo(idx){ cIdx=idx; applyCarousel(); }
+function applyCarousel(){
+  document.getElementById('cTrack').style.transform='translateX(-'+(cIdx*100)+'%)';
+  document.querySelectorAll('.c-dot').forEach(function(d,i){ d.classList.toggle('active',i===cIdx); });
+}
+
+/* ---- LIGHTBOX ---- */
+document.querySelectorAll('.polaroid img').forEach(function(img){
+  img.addEventListener('click', function(e){
+    e.stopPropagation();
+    document.getElementById('v4LbImg').src = this.src;
+    document.getElementById('v4-lightbox').classList.add('show');
+  });
+});
+function closeLightbox(){ document.getElementById('v4-lightbox').classList.remove('show'); }
+
+/* ---- VOICE NOTE ---- */
+var voicePlaying=false,voiceInterval=null,voiceSec=0,voiceMax=42;
+function toggleVoice(){
+  var btn=document.getElementById('voicePlayBtn');
+  var timeEl=document.getElementById('voiceTime');
+  var bars=document.querySelectorAll('.wave-bar');
+  if(!voicePlaying){
+    voicePlaying=true;btn.textContent='⏸';animateWave(bars);
+    voiceInterval=setInterval(function(){
+      voiceSec++;if(voiceSec>voiceMax) voiceSec=0;
+      var m=Math.floor(voiceSec/60),s=voiceSec%60;
+      timeEl.textContent=m+':'+(s<10?'0':'')+s;
+    },1000);
+  } else {
+    voicePlaying=false;btn.textContent='▶';clearInterval(voiceInterval);
+    bars.forEach(function(b){b.style.transition='height 0.4s ease';b.style.height='8px';});
+  }
+}
+function animateWave(bars){
+  bars.forEach(function(b){
+    (function loop(bar){
+      if(!voicePlaying) return;
+      bar.style.transition='height 0.18s ease';
+      bar.style.height=(5+Math.random()*30)+'px';
+      setTimeout(function(){loop(bar);},160+Math.random()*210);
+    })(b);
+  });
+}
+
+/* ---- WISH JAR ---- */
+var wishes=[
+  {icon:'🌟',text:'Semoga setiap langkahmu di SMA penuh dengan tawa, sahabat yang tulus, dan kenangan yang indah untuk diingat seumur hidup.'},
+  {icon:'📚',text:'Semoga rasa ingin tahumu tak pernah padam. Ilmu yang kamu pelajari hari ini adalah kunci pintu impian besarmu.'},
+  {icon:'🌸',text:'Di hari-hari yang terasa berat, semoga kamu selalu ingat bahwa ada seseorang yang selalu bangga padamu, apapun yang terjadi.'},
+  {icon:'☀️',text:'Semoga kamu tumbuh menjadi versi terbaikmu — tetap lembut, tetap kuat, dan selalu membawa cahaya ke sekitarmu.'},
+  {icon:'💫',text:'Semoga mimpi-mimpimu selalu lebih besar dari rasa takutmu, dan keberanianmu selalu lebih kuat dari keraguanmu.'}
+];
+function openWish(idx){
+  var w=wishes[idx];
+  document.getElementById('v4WmIcon').textContent=w.icon;
+  document.getElementById('v4WmText').textContent=w.text;
+  document.getElementById('v4-wish-modal').classList.add('show');
+}
+function closeWish(){ document.getElementById('v4-wish-modal').classList.remove('show'); }
+function handleWishOverlay(e){ if(e.target===document.getElementById('v4-wish-modal')) closeWish(); }
+
+/* ---- SCENE 4 + LANTERNS ---- */
+var lanternInterval=null;
+function spawnLantern(){
+  var colors=['rgba(255,200,80,','rgba(255,180,60,','rgba(255,220,100,','rgba(240,160,60,'];
+  var c=colors[Math.floor(Math.random()*colors.length)];
+  var l=document.createElement('div');
+  l.className='v4-lantern';
+  var sz=8+Math.random()*14;
+  l.style.cssText=[
+    'width:'+sz+'px','height:'+sz+'px',
+    'background:'+c+'0.7)','left:'+(10+Math.random()*80)+'vw',
+    'bottom:-20px',
+    'box-shadow:0 0 '+(sz*1.5)+'px '+sz+'px '+c+'0.3)',
+    'animation-duration:'+(4+Math.random()*5)+'s',
+    'animation-delay:'+(Math.random()*1)+'s'
+  ].join(';');
+  document.body.appendChild(l);
+  setTimeout(function(){ l.remove(); },9000);
+}
+function openSecret(){
+  document.getElementById('scene4-overlay').classList.add('show');
+  lanternInterval=setInterval(spawnLantern,400);
+}
+function closeSecret(){
+  document.getElementById('scene4-overlay').classList.remove('show');
+  clearInterval(lanternInterval);
+}
+function handleOverlayClick(e){ if(e.target===document.getElementById('scene4-overlay')) closeSecret(); }
+
+/* ---- PARTICLE CLICK/TOUCH TRAIL ---- */
+var particleEmojis=['🌸','❤️','🌸','✨','🌺','💕'];
+document.addEventListener('click',function(e){
+  if(e.target.closest('#v4-preloader')||e.target.closest('#v4-lightbox')||e.target.closest('#v4-wish-modal')||e.target.closest('#scene4-overlay')) return;
+  var p=document.createElement('div');
+  p.className='v4-particle';
+  p.textContent=particleEmojis[Math.floor(Math.random()*particleEmojis.length)];
+  p.style.left=e.clientX+'px';
+  p.style.top=e.clientY+'px';
+  document.body.appendChild(p);
+  setTimeout(function(){p.remove();},900);
+});
+
+/* ---- REPLAY ---- */
+function replayMemories(){
+  document.getElementById('scene3').scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

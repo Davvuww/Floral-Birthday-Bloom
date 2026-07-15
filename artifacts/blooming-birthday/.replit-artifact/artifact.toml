@@ -1,0 +1,27 @@
+kind = "web"
+previewPath = "/"
+title = "Blooming Birthday Garden"
+version = "1.0.0"
+id = "artifacts/blooming-birthday"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25210
+
+[services.development]
+run = "pnpm --filter @workspace/blooming-birthday run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/blooming-birthday", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/blooming-birthday/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25210"
+BASE_PATH = "/"
