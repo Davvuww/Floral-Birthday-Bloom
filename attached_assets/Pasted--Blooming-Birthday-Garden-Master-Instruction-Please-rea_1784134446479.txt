@@ -1,0 +1,276 @@
+# Blooming Birthday Garden — Master Instruction
+
+Please read this entire instruction before doing anything.
+
+I have uploaded:
+
+1. My existing project (graduation website).
+2. The document **Blooming Birthday Garden Project Bible**.
+
+The uploaded Project Bible is the **official product specification**.
+
+The existing project is the **engineering foundation**.
+
+Do **NOT** treat this as a small redesign.
+
+Treat this as a complete product redesign while preserving every useful engineering solution from the original project.
+
+---
+
+# Your Role
+
+You are not simply an AI assistant.
+
+You are acting as an entire professional product team consisting of:
+
+* Senior Product Designer
+* Creative Director
+* Senior Frontend Engineer
+* Senior UI Designer
+* Motion Designer
+* Interaction Designer
+* UX Writer
+* Accessibility Engineer
+* Performance Engineer
+* QA Engineer
+
+Every decision should reflect professional product design rather than template generation.
+
+---
+
+# Main Goal
+
+Create an unforgettable interactive birthday experience.
+
+The final result should feel like:
+
+* a handcrafted digital bouquet
+* an interactive luxury greeting card
+* a premium storytelling website
+* a personal gift
+
+It should NEVER feel like:
+
+* an AI template
+* a portfolio
+* a landing page
+* a graduation website with different colors
+
+---
+
+# Important Context
+
+Recipient:
+
+Azka Keyla Zaelani
+
+Birthday:
+
+21 July 2026
+
+Birth Year:
+
+2009
+
+Creator:
+
+Daffa Rafi Syakieb
+
+Situation:
+
+Daffa is celebrating from Singapore while Azka is in Jombang.
+
+The distance should become part of the story.
+
+Do not make it sad.
+
+Instead, make it feel warm, hopeful, and meaningful.
+
+---
+
+# Design Philosophy
+
+Flowers are not decoration.
+
+Flowers ARE the language of the website.
+
+Every flower should communicate something.
+
+Every animation should communicate emotion.
+
+Every interaction should feel intentional.
+
+Everything should bloom naturally.
+
+Nothing should feel mechanical.
+
+---
+
+# Engineering Rules
+
+Before changing any code:
+
+Analyze the entire project.
+
+Understand:
+
+* HTML structure
+* CSS architecture
+* JavaScript logic
+* assets
+* animations
+* reusable components
+* interactions
+* responsive behavior
+
+Do not rewrite blindly.
+
+Reuse any engineering that is already good.
+
+Replace only when there is a better solution.
+
+---
+
+# Visual Direction
+
+Use the Project Bible as the source of truth.
+
+Expand it where appropriate.
+
+Do not simplify it.
+
+Increase visual richness.
+
+Increase interaction quality.
+
+Increase emotional storytelling.
+
+Increase premium feeling.
+
+---
+
+# Motion Rules
+
+Avoid generic fade animations.
+
+Use combinations of:
+
+* bloom
+* scale
+* float
+* soft rotation
+* gentle parallax
+* depth
+* paper unfolding
+* flower blooming
+* ribbon physics
+* particle systems
+* butterfly movement
+* sunlight movement
+* wind simulation
+
+Every movement should feel organic.
+
+---
+
+# Environment
+
+The world should feel alive even if the user does nothing.
+
+Examples:
+
+* butterflies occasionally land on flowers
+* petals slowly fall
+* flowers gently sway
+* leaves react to wind
+* sunlight changes subtly
+* floating pollen appears randomly
+* distant birds or ambient nature sounds may be used sparingly
+* lighting shifts smoothly without distracting the user
+
+---
+
+# User Experience
+
+The user should never feel that they are scrolling through sections.
+
+Instead, it should feel like walking through a beautiful garden.
+
+Each chapter should naturally reveal the next.
+
+Every section should transition smoothly.
+
+---
+
+# Required Improvements
+
+If the current project feels empty,
+
+add meaningful details.
+
+If something feels static,
+
+make it alive.
+
+If something feels generic,
+
+redesign it.
+
+If something feels repetitive,
+
+replace it.
+
+If something feels rushed,
+
+polish it.
+
+---
+
+# Personal Touch
+
+The website should clearly communicate that this was carefully made by Daffa for Azka.
+
+Avoid excessive repetition.
+
+Use subtle, meaningful details instead.
+
+---
+
+# Technical Quality
+
+The final project must be:
+
+* responsive
+* accessible
+* performant
+* maintainable
+* modular
+* production ready
+
+---
+
+# Before Finishing
+
+Perform a complete internal QA.
+
+Verify:
+
+* no graduation references remain
+* no ocean references remain
+* no placeholder text
+* no broken interactions
+* no broken animations
+* no console errors
+* no duplicate CSS
+* no dead JavaScript
+* mobile works perfectly
+* tablet works perfectly
+* desktop works perfectly
+
+If something can still be improved,
+
+improve it before finishing.
+
+Never stop at "good enough."
+
+Aim for a handcrafted premium experience.
