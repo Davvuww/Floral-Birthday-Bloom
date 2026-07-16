@@ -1,0 +1,1149 @@
+/* ============================================================
+   AZKA'S GARDEN — Core Stylesheet
+   A luxury birthday experience
+   ============================================================ */
+
+/* ---------- CSS Variables ---------- */
+:root {
+  /* Brand palette */
+  --gold: #D4AF37;
+  --bg-dark: #12141a;
+  --pink-glow: #FFB7C5;
+
+  /* Extended palette */
+  --gold-soft: rgba(212, 175, 55, 0.6);
+  --gold-faint: rgba(212, 175, 55, 0.15);
+  --pink-soft: rgba(255, 183, 197, 0.6);
+  --pink-faint: rgba(255, 183, 197, 0.12);
+  --ivory: #F5F0E8;
+  --ivory-dim: rgba(245, 240, 232, 0.65);
+  --white-pure: #FFFFFF;
+  --shadow-deep: rgba(0, 0, 0, 0.5);
+
+  /* Typography */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Lato', -apple-system, sans-serif;
+  --font-script: 'Dancing Script', cursive;
+
+  /* Spacing (8px system) */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+  --space-6: 48px;
+  --space-8: 64px;
+
+  /* Transitions */
+  --ease-lux: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fade: 1.2s;
+  --dur-rise: 0.8s;
+  --dur-bloom: 2s;
+
+  /* Z-index scale */
+  --z-canvas: 1;
+  --z-sunlight: 2;
+  --z-scenes: 10;
+  --z-nav: 50;
+  --z-vase: 60;
+  --z-audio-init: 100;
+}
+
+/* ---------- Global Reset ---------- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ---------- Body Setup ---------- */
+body {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(circle at center, #2a2d3e 0%, var(--bg-dark) 100%);
+  color: var(--ivory);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  /* iPhone notch / home bar support */
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+/* ---------- Noise Texture Overlay ---------- */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ---------- Main Grid Container ---------- */
+#scene-preloader,
+#scene-unboxing,
+#scene-letter,
+#scene-scrapbook,
+#scene-distance,
+#scene-voice,
+#scene-finale {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100vw;
+  width: 100dvw;
+}
+
+/* ============================================================
+   SCENE SYSTEM
+   ============================================================ */
+.scene {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-scenes);
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100vw;
+  width: 100dvw;
+  padding: var(--space-4) var(--space-2);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity var(--dur-fade) var(--ease-lux),
+              visibility 0s linear var(--dur-fade);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scene.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity var(--dur-fade) var(--ease-lux),
+              visibility 0s linear 0s;
+}
+
+/* ============================================================
+   CANVAS & ATMOSPHERIC LAYERS
+   ============================================================ */
+#garden-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: var(--z-canvas);
+  pointer-events: none;
+}
+
+#sunlight {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-sunlight);
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    rgba(255, 183, 197, 0.08) 0%,
+    transparent 60%
+  );
+}
+
+/* ============================================================
+   PRELOADER
+   ============================================================ */
+#scene-preloader {
+  z-index: var(--z-audio-init);
+}
+
+.preloader__flower {
+  font-size: 3rem;
+  animation: preloader-spin 3s var(--ease-lux) infinite;
+}
+
+.preloader__text {
+  margin-top: var(--space-3);
+  font-family: var(--font-script);
+  font-size: 1.25rem;
+  color: var(--ivory-dim);
+  text-align: center;
+  line-height: 1.6;
+}
+
+.preloader__bar {
+  margin-top: var(--space-4);
+  width: 200px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.preloader__fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--pink-glow));
+  border-radius: 2px;
+  transition: width 0.3s var(--ease-smooth);
+}
+
+@keyframes preloader-spin {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* ============================================================
+   SCENE 1: UNBOXING
+   ============================================================ */
+.unboxing__title {
+  position: absolute;
+  top: 15%;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  color: var(--ivory);
+  text-align: center;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+}
+
+.gift-box__wrapper {
+  position: relative;
+  width: clamp(180px, 50vw, 240px);
+  height: clamp(180px, 50vw, 240px);
+  cursor: pointer;
+  user-select: none;
+}
+
+.gift-box__body {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 65%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  border: 1px solid var(--gold-faint);
+  border-radius: 12px;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+}
+
+.gift-box__lid {
+  position: absolute;
+  top: 0;
+  left: -4%;
+  width: 108%;
+  height: 38%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+  border: 1px solid var(--gold-soft);
+  border-radius: 12px;
+  z-index: 2;
+  transform-origin: bottom center;
+  transition: transform 1.5s var(--ease-lux), opacity 1s var(--ease-lux);
+}
+
+.gift-box__lid.is-open {
+  transform: translateY(-120px) rotate(-15deg);
+  opacity: 0;
+}
+
+.gift-box__ribbon-v,
+.gift-box__ribbon-h {
+  position: absolute;
+  background: var(--gold-soft);
+}
+
+.gift-box__ribbon-v {
+  left: 50%;
+  top: 0;
+  width: 12px;
+  height: 100%;
+  transform: translateX(-50%);
+}
+
+.gift-box__ribbon-h {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 12px;
+  transform: translateY(-50%);
+}
+
+.gift-box__bow {
+  position: absolute;
+  top: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 40px;
+}
+
+.gift-box__bow-left,
+.gift-box__bow-right {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border: 3px solid var(--gold);
+  border-radius: 50% 50% 50% 0;
+  top: 0;
+}
+
+.gift-box__bow-left {
+  left: 0;
+  transform: rotate(-30deg);
+}
+
+.gift-box__bow-right {
+  right: 0;
+  transform: rotate(30deg) scaleX(-1);
+}
+
+.gift-box__bow-knot {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 16px;
+  background: var(--gold);
+  border-radius: 4px;
+  z-index: 1;
+}
+
+.gift-box__shine {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    115deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 60%
+  );
+  animation: shine-sweep 4s ease-in-out infinite;
+}
+
+@keyframes shine-sweep {
+  0%, 100% { transform: translateX(-30%); }
+  50%      { transform: translateX(30%); }
+}
+
+.wax-seal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #C0392B, #8B1A1A);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4), inset 0 2px 4px rgba(255,255,255,0.15);
+  z-index: 3;
+  cursor: pointer;
+  transition: transform 0.3s var(--ease-lux);
+}
+
+.wax-seal:active {
+  transform: translate(-50%, -50%) scale(0.92);
+}
+
+.wax-seal__letter {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: rgba(255,255,255,0.85);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.unboxing__hint {
+  position: absolute;
+  bottom: 12%;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--ivory-dim);
+  letter-spacing: 0.05em;
+  animation: hint-pulse 2s ease-in-out infinite;
+}
+
+@keyframes hint-pulse {
+  0%, 100% { opacity: 0.5; }
+  50%      { opacity: 1; }
+}
+
+/* ============================================================
+   SCENE 2: HANDWRITTEN LETTER
+   ============================================================ */
+.letter__card {
+  width: min(440px, 92vw);
+  max-height: 85vh;
+  max-height: 85dvh;
+  overflow-y: auto;
+  padding: var(--space-5) var(--space-4);
+  background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  border: 1px solid var(--gold-faint);
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px var(--shadow-deep);
+}
+
+.letter__date {
+  font-size: 0.75rem;
+  color: var(--gold-soft);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.letter__salutation {
+  margin-top: var(--space-3);
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: var(--ivory);
+  line-height: 1.4;
+}
+
+.letter__body {
+  margin-top: var(--space-3);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--ivory-dim);
+  white-space: pre-wrap;
+  min-height: 60px;
+}
+
+.letter__signature {
+  display: block;
+  margin-top: var(--space-4);
+  font-family: var(--font-script);
+  font-size: 1.25rem;
+  color: var(--gold);
+}
+
+.letter__flower-prompt {
+  margin-top: var(--space-5);
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.8s var(--ease-lux);
+}
+
+.letter__flower-prompt.is-visible {
+  opacity: 1;
+}
+
+.flower-bloom {
+  font-size: 2.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  animation: bloom-pulse 2s ease-in-out infinite;
+  transition: transform 0.3s var(--ease-lux);
+}
+
+.flower-bloom:active {
+  transform: scale(0.85);
+}
+
+@keyframes bloom-pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.15); }
+}
+
+.letter__flower-prompt p {
+  margin-top: var(--space-2);
+  font-size: 0.8125rem;
+  color: var(--ivory-dim);
+}
+
+/* ============================================================
+   SCENE 3: SCRAPBOOK / MEMORY GARDEN
+   ============================================================ */
+.scrapbook__title {
+  position: absolute;
+  top: 6%;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  color: var(--ivory);
+}
+
+.scrapbook__canvas {
+  width: 100%;
+  max-width: 600px;
+  height: 70vh;
+  height: 70dvh;
+  overflow: hidden;
+  position: relative;
+  touch-action: pan-x pan-y;
+}
+
+.scrapbook__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.scrapbook__hint {
+  position: absolute;
+  bottom: 14%;
+  font-size: 0.8125rem;
+  color: var(--ivory-dim);
+}
+
+.scrapbook__nav {
+  position: absolute;
+  bottom: 8%;
+  display: flex;
+  gap: var(--space-3);
+}
+
+.scrapbook__nav button {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--gold-faint);
+  background: rgba(255,255,255,0.04);
+  color: var(--ivory);
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-lux);
+}
+
+.scrapbook__nav button:hover {
+  background: var(--gold-faint);
+  border-color: var(--gold-soft);
+}
+
+.scrapbook__done-btn {
+  position: absolute;
+  bottom: 3%;
+  padding: var(--space-2) var(--space-4);
+  background: none;
+  border: 1px solid var(--gold-soft);
+  border-radius: 24px;
+  color: var(--gold);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-lux);
+}
+
+.scrapbook__done-btn:hover {
+  background: var(--gold-faint);
+}
+
+/* ============================================================
+   SCENE 4: ACROSS THE DISTANCE
+   ============================================================ */
+.distance__title {
+  position: absolute;
+  top: 8%;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  color: var(--ivory);
+}
+
+.distance__subtitle {
+  position: absolute;
+  top: 16%;
+  font-size: 0.9375rem;
+  color: var(--ivory-dim);
+  letter-spacing: 0.03em;
+}
+
+.distance__map {
+  position: relative;
+  width: min(480px, 92vw);
+  aspect-ratio: 3 / 2;
+  cursor: pointer;
+}
+
+.distance__map-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.distance__city {
+  position: absolute;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.distance__city--sg {
+  top: 34%;
+  left: 62%;
+}
+
+.distance__city--jb {
+  top: 47%;
+  left: 23%;
+}
+
+.distance__city-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 12px var(--gold-soft);
+  margin: 0 auto;
+  animation: city-pulse 2s ease-in-out infinite;
+}
+
+@keyframes city-pulse {
+  0%, 100% { box-shadow: 0 0 8px var(--gold-soft); }
+  50%      { box-shadow: 0 0 20px var(--gold-soft); }
+}
+
+.distance__city-label {
+  margin-top: var(--space-1);
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  color: var(--ivory);
+}
+
+.distance__city-sub {
+  font-size: 0.75rem;
+  color: var(--ivory-dim);
+}
+
+.distance__thread-hint {
+  position: absolute;
+  bottom: 18%;
+  font-size: 0.8125rem;
+  color: var(--ivory-dim);
+  animation: hint-pulse 2s ease-in-out infinite;
+}
+
+.distance__thread-done {
+  position: absolute;
+  bottom: 18%;
+  font-family: var(--font-script);
+  font-size: 1.125rem;
+  color: var(--gold);
+  opacity: 0;
+  transition: opacity 1s var(--ease-lux);
+  text-align: center;
+  padding: 0 var(--space-2);
+}
+
+.distance__thread-done.is-visible {
+  opacity: 1;
+}
+
+.distance__continue {
+  position: absolute;
+  bottom: 8%;
+  padding: var(--space-2) var(--space-4);
+  background: none;
+  border: 1px solid var(--gold-soft);
+  border-radius: 24px;
+  color: var(--gold);
+  font-size: 0.875rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.8s var(--ease-lux), background 0.3s var(--ease-lux);
+}
+
+.distance__continue.is-visible {
+  opacity: 1;
+}
+
+.distance__continue:hover {
+  background: var(--gold-faint);
+}
+
+/* ============================================================
+   SCENE 5: VOICE NOTE & MUSIC PLAYER
+   ============================================================ */
+.voice__title {
+  position: absolute;
+  top: 6%;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  color: var(--ivory);
+}
+
+.voice__subtitle {
+  position: absolute;
+  top: 14%;
+  font-size: 0.875rem;
+  color: var(--ivory-dim);
+}
+
+.music-player {
+  width: min(380px, 90vw);
+  padding: var(--space-3);
+  background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  border: 1px solid var(--gold-faint);
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+}
+
+.music-player__track {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.music-player__art {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--gold-faint);
+  font-size: 1.5rem;
+}
+
+.music-player__name {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--ivory);
+}
+
+.music-player__artist {
+  font-size: 0.75rem;
+  color: var(--ivory-dim);
+}
+
+.music-player__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.music-player__btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.25rem;
+  color: var(--ivory);
+  transition: transform 0.2s var(--ease-lux);
+}
+
+.music-player__btn:active {
+  transform: scale(0.9);
+}
+
+.music-player__btn--play {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--bg-dark);
+  font-size: 1.25rem;
+  display: grid;
+  place-items: center;
+}
+
+.music-player__progress {
+  margin-top: var(--space-3);
+}
+
+.music-player__bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.music-player__bar-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--pink-glow));
+  border-radius: 2px;
+  transition: width 0.1s linear;
+}
+
+.music-player__time {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--space-1);
+  font-size: 0.6875rem;
+  color: var(--ivory-dim);
+}
+
+.waveform-container {
+  width: min(380px, 90vw);
+  margin-top: var(--space-4);
+  padding: var(--space-3);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--pink-faint);
+  border-radius: 16px;
+  text-align: center;
+}
+
+.waveform-container__label {
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  color: var(--pink-glow);
+  margin-bottom: var(--space-2);
+}
+
+#waveform-canvas {
+  width: 100%;
+  height: 60px;
+}
+
+.waveform-container__play {
+  margin-top: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: var(--pink-faint);
+  border: 1px solid var(--pink-soft);
+  border-radius: 24px;
+  color: var(--pink-glow);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-lux);
+}
+
+.waveform-container__play:hover {
+  background: var(--pink-soft);
+}
+
+.voice__continue {
+  position: absolute;
+  bottom: 5%;
+  padding: var(--space-2) var(--space-4);
+  background: none;
+  border: 1px solid var(--gold-soft);
+  border-radius: 24px;
+  color: var(--gold);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-lux);
+}
+
+.voice__continue:hover {
+  background: var(--gold-faint);
+}
+
+/* ============================================================
+   SCENE 6: FINALE — BOUQUET & CAKE
+   ============================================================ */
+.finale__title {
+  position: absolute;
+  top: 5%;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.75rem, 6vw, 2.5rem);
+  color: var(--ivory);
+  text-align: center;
+  line-height: 1.3;
+}
+
+.finale__title em {
+  font-family: var(--font-script);
+  font-style: normal;
+  color: var(--gold);
+}
+
+.finale__bouquet-check {
+  position: absolute;
+  top: 20%;
+  display: flex;
+  gap: var(--space-2);
+}
+
+.finale__bouquet-slot {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px dashed var(--gold-faint);
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+  color: var(--ivory-dim);
+  transition: all 0.5s var(--ease-lux);
+}
+
+.finale__bouquet-slot.is-filled {
+  border-style: solid;
+  border-color: var(--gold);
+  background: var(--gold-faint);
+}
+
+.finale__lock-msg {
+  position: absolute;
+  top: 30%;
+  font-size: 0.875rem;
+  color: var(--ivory-dim);
+  text-align: center;
+  padding: 0 var(--space-2);
+}
+
+.cake-section {
+  position: absolute;
+  top: 38%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s var(--ease-lux), transform 1s var(--ease-lux);
+  pointer-events: none;
+}
+
+.cake-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.cake__svg-wrap {
+  width: min(280px, 80vw);
+}
+
+.cake__hint {
+  font-size: 0.8125rem;
+  color: var(--ivory-dim);
+}
+
+.cake__wish {
+  margin-top: var(--space-2);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--ivory);
+  text-align: center;
+  opacity: 0;
+  transition: opacity 1s var(--ease-lux);
+}
+
+.cake__wish.is-visible {
+  opacity: 1;
+}
+
+.cake__signature {
+  margin-top: var(--space-3);
+  font-family: var(--font-script);
+  font-size: 1.125rem;
+  color: var(--gold);
+  opacity: 0;
+  transition: opacity 1s var(--ease-lux);
+}
+
+.cake__signature.is-visible {
+  opacity: 1;
+}
+
+/* ============================================================
+   PERSISTENT UI: PROGRESS NAV
+   ============================================================ */
+#progress-nav {
+  position: fixed;
+  bottom: calc(env(safe-area-inset-bottom) + var(--space-3));
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--space-2);
+  z-index: var(--z-nav);
+  opacity: 0;
+  transition: opacity 0.8s var(--ease-lux);
+}
+
+#progress-nav.is-visible {
+  opacity: 1;
+}
+
+.progress-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid var(--gold-faint);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s var(--ease-lux);
+}
+
+.progress-dot.is-active {
+  background: var(--gold);
+  border-color: var(--gold);
+  box-shadow: 0 0 8px var(--gold-soft);
+}
+
+.progress-dot:hover {
+  border-color: var(--gold-soft);
+}
+
+/* ============================================================
+   PERSISTENT UI: VASE / BOUQUET COUNTER
+   ============================================================ */
+#vase-container {
+  position: fixed;
+  top: calc(env(safe-area-inset-top) + var(--space-2));
+  right: calc(env(safe-area-inset-right) + var(--space-2));
+  z-index: var(--z-vase);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity 0.8s var(--ease-lux);
+}
+
+#vase-container.is-visible {
+  opacity: 1;
+}
+
+.vase__flowers {
+  display: flex;
+  gap: 2px;
+  min-height: 24px;
+}
+
+.vase__svg {
+  width: 40px;
+  height: 46px;
+}
+
+.vase__count {
+  font-size: 0.6875rem;
+  color: var(--gold-soft);
+  letter-spacing: 0.05em;
+}
+
+/* ============================================================
+   AUDIO INIT OVERLAY
+   ============================================================ */
+#audio-init {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-audio-init);
+  display: grid;
+  place-items: center;
+  background: var(--bg-dark);
+  transition: opacity 1s var(--ease-lux), visibility 1s var(--ease-lux);
+}
+
+#audio-init.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.audio-init__card {
+  text-align: center;
+  padding: var(--space-5) var(--space-4);
+}
+
+.audio-init__icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-3);
+}
+
+.audio-init__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.75rem;
+  color: var(--ivory);
+  margin-bottom: var(--space-2);
+}
+
+.audio-init__sub {
+  font-size: 0.875rem;
+  color: var(--ivory-dim);
+  line-height: 1.6;
+  margin-bottom: var(--space-4);
+}
+
+.audio-init__btn {
+  padding: var(--space-2) var(--space-5);
+  background: var(--gold);
+  border: none;
+  border-radius: 28px;
+  color: var(--bg-dark);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: transform 0.2s var(--ease-lux), box-shadow 0.3s var(--ease-lux);
+}
+
+.audio-init__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--gold-faint);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 480px) {
+  .letter__card {
+    padding: var(--space-4) var(--space-3);
+  max-height: 80vh;
+    max-height: 80dvh;
+  }
+
+  .music-player,
+  .waveform-container {
+    width: 92vw;
+  }
+}
+
+/* ============================================================
+   ACCESSIBILITY
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (prefers-contrast: high) {
+  :root {
+    --ivory-dim: rgba(245, 240, 232, 0.9);
+    --gold-soft: var(--gold);
+    --pink-soft: var(--pink-glow);
+  }
+}
+
+button:focus-visible,
+[role="button"]:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.scene:focus-visible {
+  outline: none;
+}
