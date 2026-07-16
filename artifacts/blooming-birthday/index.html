@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>Azka's Garden — A Journey Across Distances</title>
   <meta name="description" content="A handcrafted digital birthday garden from Singapore to Jombang." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -34,7 +34,10 @@
 /* =====================================================
    RESET & BASE
    ===================================================== */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after {
+  box-sizing: border-box; margin: 0; padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
 html { scroll-behavior: smooth; font-size: 16px; }
 body {
   background: var(--ivory);
@@ -46,6 +49,8 @@ body {
   width: 100vw;
   height: 100dvh;
   user-select: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 body.scrollable { overflow-y: auto; overflow-x: hidden; }
 
@@ -55,7 +60,7 @@ body.scrollable { overflow-y: auto; overflow-x: hidden; }
 #noise-overlay {
   position: fixed; inset: 0; z-index: 9999;
   pointer-events: none;
-  opacity: 0.04;
+  opacity: 0.03;
   mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
 }
@@ -90,6 +95,7 @@ body.scrollable { overflow-y: auto; overflow-x: hidden; }
   display: flex; align-items: center; justify-content: center;
   opacity: 0; pointer-events: none;
   transition: none;
+  will-change: transform, opacity, filter;
 }
 .scene.is-active { opacity: 1; pointer-events: auto; }
 
@@ -419,6 +425,7 @@ body.scrollable { overflow-y: auto; overflow-x: hidden; }
   flex-shrink: 0;
   transition: box-shadow 0.3s ease;
   -webkit-tap-highlight-color: transparent;
+  will-change: transform, opacity;
 }
 .polaroid:nth-child(odd) { transform: rotate(-2.5deg); }
 .polaroid:nth-child(even) { transform: rotate(1.8deg); }
@@ -656,12 +663,14 @@ body.scrollable { overflow-y: auto; overflow-x: hidden; }
 /* Music player */
 .music-player {
   width: min(420px, 90vw);
-  background: rgba(253,251,247,0.85);
+  background: rgba(253,251,247,0.82);
   border: 1px solid rgba(232,180,184,0.3);
   border-radius: 16px;
   padding: 1.5rem 1.8rem;
-  box-shadow: 0 8px 32px rgba(44,38,33,0.07);
-  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(44,38,33,0.07), inset 0 1px 0 rgba(255,255,255,0.6);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  will-change: transform, opacity;
 }
 .music-player__track {
   display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem;
@@ -724,12 +733,14 @@ body.scrollable { overflow-y: auto; overflow-x: hidden; }
 /* Waveform canvas */
 .waveform-container {
   width: min(420px, 90vw);
-  background: rgba(253,251,247,0.7);
+  background: rgba(253,251,247,0.72);
   border: 1px solid rgba(232,180,184,0.25);
   border-radius: 16px;
   padding: 1.2rem 1.5rem;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 16px rgba(44,38,33,0.05);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: 0 4px 16px rgba(44,38,33,0.05), inset 0 1px 0 rgba(255,255,255,0.5);
+  will-change: transform, opacity;
 }
 .waveform-container__label {
   font-family: 'Lato', sans-serif;
@@ -881,6 +892,17 @@ body.scrollable { overflow-y: auto; overflow-x: hidden; }
   opacity: 0; transition: opacity 1.5s ease 0.5s;
 }
 .cake__signature.visible { opacity: 1; }
+
+/* "Azka Keyla" name — multi-layered pale gold text-shadow */
+.finale__title em {
+  font-style: italic;
+  letter-spacing: -0.05em;
+  text-shadow:
+    0 0 20px rgba(212,175,55,0.5),
+    0 0 50px rgba(212,175,55,0.25),
+    0 2px 6px rgba(212,175,55,0.35),
+    0 1px 2px rgba(44,38,33,0.12);
+}
 .mic-btn {
   padding: 0.7rem 1.8rem;
   border-radius: 99px;
@@ -946,6 +968,7 @@ body.scrollable { overflow-y: auto; overflow-x: hidden; }
   font-size: 2.4rem;
   pointer-events: none;
   transform-origin: center;
+  will-change: transform, opacity;
 }
 
 /* =====================================================
@@ -961,6 +984,7 @@ body.scrollable { overflow-y: auto; overflow-x: hidden; }
   pointer-events: none;
   filter: drop-shadow(0 1px 4px rgba(212,175,55,0.3));
   animation: butterfly-wing 0.6s ease-in-out infinite alternate;
+  will-change: transform, opacity;
 }
 @keyframes butterfly-wing {
   from { transform: scaleX(1); }
@@ -1443,9 +1467,17 @@ body.scrollable { overflow-y: auto; overflow-x: hidden; }
 
 <script>
 // ============================================================
-// GSAP PLUGIN REGISTRATION
+// GSAP PLUGIN REGISTRATION & GLOBAL DEFAULTS
 // ============================================================
 gsap.registerPlugin(MotionPathPlugin, TextPlugin);
+gsap.config({ autoRound: false });
+
+// ============================================================
+// HAPTIC HELPER
+// ============================================================
+function haptic(pattern = [20, 50, 20]) {
+  if (navigator.vibrate) navigator.vibrate(pattern);
+}
 
 // ============================================================
 // CONFIGURATION — EDIT HERE
@@ -1535,85 +1567,127 @@ const FLOWERS = [
 ];
 
 // ============================================================
-// CANVAS 2D PARTICLE SYSTEM (§3.2) — Pollen & Dust
-// Replacing WebGL/Three.js — Canvas 2D is iframe-safe
+// CANVAS 2D PARTICLE SYSTEM — 3-Layer Cinematic Depth (§4)
+// Object-pooled, 60FPS, Canvas-only (no DOM elements)
 // ============================================================
 function initParticles() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const canvas = document.getElementById('garden-canvas');
   const isMobile = window.innerWidth < 768;
-  const MAX_PARTICLES = isMobile ? 50 : 150;
+  const TOTAL = isMobile ? 50 : 150;
+
+  // Layer split: BG 40% · MID 50% · FG 10%
+  const BG_N  = Math.floor(TOTAL * 0.4);
+  const MID_N = Math.floor(TOTAL * 0.5);
+  const FG_N  = TOTAL - BG_N - MID_N;
 
   let W = window.innerWidth, H = window.innerHeight;
-  canvas.width  = W;
-  canvas.height = H;
+  canvas.width = W; canvas.height = H;
   const ctx = canvas.getContext('2d');
 
-  // Color palette (CSS color strings)
   const palette = [
-    'rgba(232,180,184,',  // blush
-    'rgba(201,138,146,',  // dusty rose
-    'rgba(212,175,55,',   // gold
-    'rgba(165,180,159,',  // sage
-    'rgba(253,251,247,',  // ivory
+    'rgba(232,180,184,',
+    'rgba(201,138,146,',
+    'rgba(212,175,55,',
+    'rgba(165,180,159,',
+    'rgba(253,251,247,',
   ];
 
-  const particles = [];
-
-  function resetParticle(p) {
-    p.x     = Math.random() * W;
-    p.y     = H + 10;
-    p.vy    = 0.18 + Math.random() * 0.32;
-    p.vx    = (Math.random() - 0.5) * 0.25;
+  function makeParticle(layer) {
+    const p = { layer, life: 0, color: palette[Math.floor(Math.random() * palette.length)] };
     p.phase = Math.random() * Math.PI * 2;
-    p.freq  = 0.3 + Math.random() * 0.7;
-    p.amp   = 15 + Math.random() * 35;
-    p.r     = 1 + Math.random() * 2;
-    p.life  = 0;
-    p.maxLife = 9000 + Math.random() * 5000;
-    p.color = palette[Math.floor(Math.random() * palette.length)];
+    p.x = Math.random() * W;
+    p.y = H + 10;
+    if (layer === 'bg') {
+      // Layer 3 — background: tiny, slow, semi-transparent
+      p.r = 0.5 + Math.random() * 1.0;
+      p.vy = 0.07 + Math.random() * 0.10;
+      p.vx = (Math.random() - 0.5) * 0.10;
+      p.freq = 0.15 + Math.random() * 0.35;
+      p.amp  = 6 + Math.random() * 14;
+      p.maxAlpha = 0.20;
+      p.maxLife  = 15000 + Math.random() * 7000;
+    } else if (layer === 'mid') {
+      // Layer 2 — midground: sharp, colorful main flowers
+      p.r = 1.5 + Math.random() * 1.5;
+      p.vy = 0.18 + Math.random() * 0.22;
+      p.vx = (Math.random() - 0.5) * 0.22;
+      p.freq = 0.28 + Math.random() * 0.55;
+      p.amp  = 14 + Math.random() * 28;
+      p.maxAlpha = 0.58;
+      p.maxLife  = 9000 + Math.random() * 5000;
+    } else {
+      // Layer 1 — foreground: huge, fast, close to screen (glow-blurred)
+      p.r = 4 + Math.random() * 4.5;
+      p.vy = 0.38 + Math.random() * 0.42;
+      p.vx = (Math.random() - 0.5) * 0.38;
+      p.freq = 0.12 + Math.random() * 0.25;
+      p.amp  = 22 + Math.random() * 38;
+      p.maxAlpha = 0.32;
+      p.maxLife  = 6000 + Math.random() * 4000;
+    }
     return p;
   }
 
-  for (let i = 0; i < MAX_PARTICLES; i++) {
-    const p = resetParticle({});
-    // Scatter initial y across full viewport
-    p.y = Math.random() * H;
-    p.life = Math.random() * p.maxLife * 0.6;
-    particles.push(p);
+  function resetParticle(p) {
+    const fresh = makeParticle(p.layer);
+    Object.assign(p, fresh);
   }
+
+  // Object pool — scatter initial y so screen fills immediately
+  const particles = [];
+  const layers = [
+    { name: 'bg', count: BG_N },
+    { name: 'mid', count: MID_N },
+    { name: 'fg', count: FG_N },
+  ];
+  layers.forEach(({ name, count }) => {
+    for (let i = 0; i < count; i++) {
+      const p = makeParticle(name);
+      p.y = Math.random() * H;
+      p.life = Math.random() * p.maxLife * 0.65;
+      particles.push(p);
+    }
+  });
 
   let lastTime = 0;
   function tick(time) {
     requestAnimationFrame(tick);
     const dt = Math.min(time - lastTime, 50);
     lastTime = time;
-
     ctx.clearRect(0, 0, W, H);
 
-    for (let i = 0; i < MAX_PARTICLES; i++) {
-      const p = particles[i];
-      p.life += dt;
-      if (p.life >= p.maxLife || p.y < -10) { resetParticle(p); continue; }
+    // Draw back→front: bg, mid, fg
+    ['bg', 'mid', 'fg'].forEach(layer => {
+      if (layer === 'fg') {
+        ctx.shadowBlur = 10;
+      }
+      particles.forEach(p => {
+        if (p.layer !== layer) return;
+        p.life += dt;
+        if (p.life >= p.maxLife || p.y < -p.r * 3) { resetParticle(p); return; }
 
-      const t = p.life * 0.001;
-      // Sine-wave horizontal drift (§3.2 — organic, not linear)
-      p.x += p.vx + Math.sin(t * p.freq * Math.PI * 2 + p.phase) * p.amp * 0.0015 * (dt / 16);
-      p.y -= p.vy * (dt / 16);
+        const t = p.life * 0.001;
+        p.x += p.vx + Math.sin(t * p.freq * Math.PI * 2 + p.phase) * p.amp * 0.0015 * (dt / 16);
+        p.y -= p.vy * (dt / 16);
 
-      // Opacity: fade in 2s, steady, fade out 2s
-      let alpha = 0.55;
-      const fadeInT  = 2000;
-      const fadeOutT = p.maxLife - 2000;
-      if (p.life < fadeInT) alpha = 0.55 * (p.life / fadeInT);
-      else if (p.life > fadeOutT) alpha = 0.55 * (1 - (p.life - fadeOutT) / 2000);
+        // Fade in 2s · steady · fade out 2s
+        const fadeInT  = 2000;
+        const fadeOutT = p.maxLife - 2000;
+        let alpha = p.maxAlpha;
+        if (p.life < fadeInT) alpha = p.maxAlpha * (p.life / fadeInT);
+        else if (p.life > fadeOutT) alpha = p.maxAlpha * (1 - (p.life - fadeOutT) / 2000);
 
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = p.color + alpha + ')';
-      ctx.fill();
-    }
+        if (layer === 'fg') ctx.shadowColor = p.color + '0.5)';
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.color + alpha.toFixed(3) + ')';
+        ctx.fill();
+      });
+      if (layer === 'fg') { ctx.shadowBlur = 0; ctx.shadowColor = 'transparent'; }
+    });
   }
   requestAnimationFrame(tick);
 
@@ -1729,6 +1803,26 @@ function initButterflies() {
 }
 
 // ============================================================
+// BREATHING UI — subtle GSAP scale pulse on key surfaces (§3)
+// ============================================================
+function initBreathing() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const targets = ['.music-player', '.waveform-container', '#vase-container'];
+  targets.forEach(sel => {
+    const el = document.querySelector(sel);
+    if (!el) return;
+    gsap.to(el, {
+      scale: 1.02,
+      duration: 3,
+      ease: 'power1.inOut',
+      yoyo: true,
+      repeat: -1,
+      transformOrigin: 'center center',
+    });
+  });
+}
+
+// ============================================================
 // FIREFLIES (§3.4) — for finale scene
 // ============================================================
 function spawnFireflies() {
@@ -1808,20 +1902,19 @@ const SceneManager = (() => {
     const next = document.getElementById(scenes[index]);
     if (!next) return;
 
-    // Direction-based entrance
-    const fromX = dir > 0 ? '30px' : '-30px';
+    // Cinematic blur crossfade (1200ms total — §2 protocol)
     const tl = gsap.timeline();
-    tl.to(prev, { opacity: 0, x: dir > 0 ? '-30px' : '30px', duration: 0.45, ease: 'power2.inOut', onComplete: () => {
+    tl.to(prev, { opacity: 0, filter: 'blur(4px)', duration: 0.6, ease: 'power3.inOut', onComplete: () => {
       prev.classList.remove('is-active');
-      gsap.set(prev, { x: 0 });
+      gsap.set(prev, { filter: 'blur(0px)' });
     }})
-    .set(next, { opacity: 0, x: fromX })
+    .set(next, { opacity: 0, filter: 'blur(4px)' })
     .set(next, { pointerEvents: 'auto' })
     .add(() => {
       next.classList.add('is-active');
       next.focus({ preventScroll: true });
     })
-    .to(next, { opacity: 1, x: 0, duration: 0.5, ease: 'power2.out' });
+    .to(next, { opacity: 1, filter: 'blur(0px)', duration: 0.6, ease: 'power3.out' });
 
     current = index;
     updateProgress(index);
@@ -1855,6 +1948,7 @@ const BouquetSystem = (() => {
   function collectFlower(flowerIndex) {
     const flower = FLOWERS[flowerIndex];
     if (GardenState.state.bouquet.collected.includes(flowerIndex)) return;
+    haptic([15, 30, 15]);
 
     // Create flying flower element
     const el = document.createElement('div');
@@ -1984,6 +2078,7 @@ function initUnboxing() {
   function openBox() {
     isOpen = true;
     holdStart = null;
+    haptic([30, 60, 30]);
 
     // Crack animation
     gsap.timeline()
@@ -2076,7 +2171,34 @@ const AudioSystem = (() => {
       if (playBtn) playBtn.textContent = '▶';
     });
 
-    document.getElementById('music-play').addEventListener('click', togglePla.     bgMusic.volume = bgVolume;
+    document.getElementById('music-play').addEventListener('click', togglePlay);
+    document.getElementById('music-vol-down').addEventListener('click', () => setVolume(bgVolume - 0.1));
+    document.getElementById('music-vol-up').addEventListener('click', () => setVolume(bgVolume + 0.1));
+    document.getElementById('music-bar').addEventListener('click', seek);
+  }
+
+  function updateBar() {
+    if (!bgMusic.duration) return;
+    const pct = (bgMusic.currentTime / bgMusic.duration) * 100;
+    barFill.style.width = pct + '%';
+    const c = Math.floor(bgMusic.currentTime);
+    timeCurrent.textContent = `${Math.floor(c/60)}:${String(c%60).padStart(2,'0')}`;
+    if (playBtn) playBtn.textContent = bgMusic.paused ? '▶' : '⏸';
+  }
+
+  function togglePlay() {
+    if (bgMusic.paused) {
+      bgMusic.play().catch(()=>{});
+      if (playBtn) playBtn.textContent = '⏸';
+    } else {
+      bgMusic.pause();
+      if (playBtn) playBtn.textContent = '▶';
+    }
+  }
+
+  function setVolume(v) {
+    bgVolume = Math.max(0, Math.min(1, v));
+    bgMusic.volume = bgVolume;
   }
 
   function seek(e) {
@@ -2086,10 +2208,10 @@ const AudioSystem = (() => {
   }
 
   function duck() {
-    gsap.to(bgMusic, { volume: bgVolume * 0.1, duration: 0.5 });
+    gsap.to(bgMusic, { volume: bgVolume * 0.1, duration: 1.0, ease: 'power3.inOut' });
   }
   function unduck() {
-    gsap.to(bgMusic, { volume: bgVolume, duration: 0.8 });
+    gsap.to(bgMusic, { volume: bgVolume, duration: 1.0, ease: 'power3.inOut' });
   }
 
   return { init, duck, unduck, setVolume };
@@ -2229,31 +2351,42 @@ function initScrapbook() {
     inner.appendChild(card);
   });
 
-  // Drag to scroll
+  // LERP drag — smooth momentum catch-up to finger (§2 protocol)
   let isDragging = false, startX = 0, scrollLeft = 0;
+  let lerpTarget = 0, lerpCurrent = 0, lerpRafId = null;
   const canvas = document.getElementById('scrapbook-canvas');
+
+  function runLerp() {
+    lerpCurrent += (lerpTarget - lerpCurrent) * 0.12;
+    inner.style.transform = `translateX(${lerpCurrent}px) translateY(-50%)`;
+    if (Math.abs(lerpTarget - lerpCurrent) > 0.05) {
+      lerpRafId = requestAnimationFrame(runLerp);
+    } else {
+      lerpCurrent = lerpTarget;
+      inner.style.transform = `translateX(${lerpCurrent}px) translateY(-50%)`;
+      lerpRafId = null;
+    }
+  }
 
   canvas.addEventListener('pointerdown', e => {
     isDragging = true; startX = e.clientX;
-    scrollLeft = parseFloat(inner.style.transform?.match(/-?\d+/)?.[0] ?? 0) || 0;
+    scrollLeft = lerpCurrent;
     canvas.style.cursor = 'grabbing';
+    if (lerpRafId) { cancelAnimationFrame(lerpRafId); lerpRafId = null; }
   });
   document.addEventListener('pointermove', e => {
     if (!isDragging) return;
     const dx = e.clientX - startX;
-    const newX = Math.min(0, Math.max(-(inner.offsetWidth - canvas.offsetWidth), scrollLeft + dx));
-    inner.style.transform = `translateX(${newX}px) translateY(-50%)`;
+    lerpTarget = Math.min(0, Math.max(-(inner.offsetWidth - canvas.offsetWidth), scrollLeft + dx));
+    if (!lerpRafId) lerpRafId = requestAnimationFrame(runLerp);
   });
   document.addEventListener('pointerup', () => { isDragging = false; canvas.style.cursor = 'grab'; });
 
-  // Nav buttons
+  // Nav buttons — also LERP
   function scrollBy(dir) {
-    const current = parseFloat(inner.style.transform?.match(/-?\d+(\.\d+)?/)?.[0] ?? 0) || 0;
     const step = 220;
-    const newX = Math.min(0, Math.max(-(inner.offsetWidth - canvas.offsetWidth), current + dir * step));
-    gsap.to(inner, { x: newX, duration: 0.5, ease: 'power2.out', onUpdate: () => {
-      inner.style.transform = `translateX(${gsap.getProperty(inner,'x')}px) translateY(-50%)`;
-    }});
+    lerpTarget = Math.min(0, Math.max(-(inner.offsetWidth - canvas.offsetWidth), lerpCurrent + dir * step));
+    if (!lerpRafId) lerpRafId = requestAnimationFrame(runLerp);
   }
   document.getElementById('scrapbook-prev').addEventListener('click', () => scrollBy(1));
   document.getElementById('scrapbook-next').addEventListener('click', () => scrollBy(-1));
@@ -2658,6 +2791,7 @@ window.addEventListener('DOMContentLoaded', () => {
   initWind();
   initSunlight();
   initButterflies();
+  initBreathing();
 
   // Bouquet listener for finale
   GardenState.on('bouquetComplete', () => {

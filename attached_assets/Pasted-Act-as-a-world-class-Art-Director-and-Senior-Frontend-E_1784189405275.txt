@@ -1,0 +1,35 @@
+Act as a world-class Art Director and Senior Frontend Engineer. I need you to audit, refine, and massively upgrade our current codebase for "Azka's Birthday Garden". Every pixel and motion must feel expensive, deliberate, and optimized for a butter-smooth 60FPS experience on an iPhone 11.
+
+Please apply this "Ultimate Luxury & Fluidity Protocol" to all files:
+
+1. CRITICAL ARCHITECTURE & IOS OPTIMIZations:
+   - iOS Touch Fix: Replace all CSS `hover` states with JS-driven active states or `pointerdown`/`touchstart` to prevent sticky hovers.
+   - Tap Highlight: Add `-webkit-tap-highlight-color: transparent;` globally to remove the cheap grey blink on iOS taps.
+   - Viewport Lock: Ensure `index.html` meta viewport strictly uses `maximum-scale=1.0, user-scalable=no`.
+   - Audio Autoplay: Ensure the "Howl's Moving Castle" audio context initializes ONLY after the first user interaction.
+
+2. ULTRA-SMOOTHNESS & MOTION PROTOCOL:
+   - Sub-pixel Rendering: Set `gsap.defaults({ autoRound: false });` globally so GSAP calculates sub-pixels, preventing jagged movements.
+   - Weighted Motion: Eliminate linear animations. Use `power3.inOut` or custom cubic-bezier for a physical, weighted feel.
+   - LERP (Linear Interpolation): For touch, drag, or tracking events, use LERP so elements "catch up" to the finger with smooth momentum, not instant snapping.
+   - Cinematic Crossfades: Scene transitions must never instantly snap. Use opacity combined with `filter: blur(4px)` over 1200ms (dissolve from blur, fade into blur).
+   - Layout Thrashing: Add `will-change: transform, opacity;` to all GSAP-animated elements.
+
+3. THE "LUXURY" VISUAL & HAPTIC POLISH:
+   - Typography: Add `-webkit-font-smoothing: antialiased;` and `-moz-osx-font-smoothing: grayscale;` globally. The name "AzkaKeylaZaelani" must have a multi-layered text-shadow (pale gold) and `letter-spacing: -0.05em`.
+   - Breathing UI: Add a subtle GSAP scale loop (1.0 to 1.02 over 3s, yoyo) to main UI elements.
+   - Premium Texture: Add a global CSS Noise Overlay (`mix-blend-mode: multiply`, opacity: 0.03) to simulate physical paper.
+   - Glassmorphism: Use `backdrop-filter: blur(20px) saturate(180%);` combined with a 1px inner semi-transparent white border.
+   - Haptics: Integrate `navigator.vibrate([20, 50, 20])` on key interactions (opening box, clicking flowers).
+   - Audio Ducking: When a voice note plays, use GSAP to smoothly fade background music to 10% over 1000ms, and fade back when ended.
+
+4. MASSIVE FLORAL ABUNDANCE (CANVAS-DRIVEN):
+   - Update `ParticleEngine.js` to render 150+ floral particles exclusively using HTML5 Canvas (DO NOT use DOM elements for this to save battery and ensure 60FPS).
+   - Object Pooling: Recycle petals when they leave the screen to prevent memory leaks.
+   - Cinematic Depth of Field: Render in 3 layers:
+     * Layer 1 (Foreground): Huge petals, fast, passing close to screen with a blur filter.
+     * Layer 2 (Midground): Sharp, colorful main flowers.
+     * Layer 3 (Background): Tiny, slow, semi-transparent petals far away.
+   - Wind Physics: Use a Sine wave or Simplex noise algorithm so petals drift, sway, and rotate naturally in the wind.
+
+Please review the entire codebase, implement these enhancements systematically, and ensure the code remains clean and modular. Acknowledge once fully applied.
