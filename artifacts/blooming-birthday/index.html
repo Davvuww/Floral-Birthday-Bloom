@@ -992,6 +992,21 @@ body.scrollable { overflow-y: auto; overflow-x: hidden; }
 }
 
 /* =====================================================
+   GLASS PANEL & GOLD GLOW UTILITIES
+   ===================================================== */
+.glass-panel {
+  backdrop-filter: blur(15px);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+.gold-glow {
+  color: #D4AF37;
+  text-shadow: 0 0 15px rgba(212,175,55,0.4);
+}
+
+/* =====================================================
    FIREFLY (Secret Ending)
    ===================================================== */
 .firefly {
@@ -1681,9 +1696,14 @@ function initParticles() {
 
         if (layer === 'fg') ctx.shadowColor = p.color + '0.5)';
 
+        // Soft glowing orb — radial gradient for all layers
+        const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 2.2);
+        grad.addColorStop(0,   p.color + alpha.toFixed(3) + ')');
+        grad.addColorStop(0.5, p.color + (alpha * 0.55).toFixed(3) + ')');
+        grad.addColorStop(1,   p.color + '0)');
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = p.color + alpha.toFixed(3) + ')';
+        ctx.arc(p.x, p.y, p.r * 2.2, 0, Math.PI * 2);
+        ctx.fillStyle = grad;
         ctx.fill();
       });
       if (layer === 'fg') { ctx.shadowBlur = 0; ctx.shadowColor = 'transparent'; }
@@ -2792,6 +2812,9 @@ window.addEventListener('DOMContentLoaded', () => {
   initSunlight();
   initButterflies();
   initBreathing();
+
+  // Gift box gentle float
+  gsap.to('.gift-box__wrapper', { y: -10, duration: 2.5, repeat: -1, yoyo: true, ease: 'sine.inOut' });
 
   // Bouquet listener for finale
   GardenState.on('bouquetComplete', () => {
